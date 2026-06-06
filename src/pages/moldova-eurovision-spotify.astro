@@ -1,35 +1,50 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import MoldovaSpotifyTable from '../components/MoldovaSpotifyTable.astro';
-import data from '../data/moldova-eurovision-spotify.json';
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Datetime from "@/components/Datetime.astro";
+import Footer from "@/components/Footer.astro";
+import MoldovaSpotifyTable from "@/components/MoldovaSpotifyTable.astro";
+import data from "@/data/moldova-eurovision-spotify.json";
+import config from "@/config";
 
 const createdAt = '2026-06-06';
+const pageTitle = "Topul pieselor Moldovei la Eurovision după ascultări pe Spotify";
+const pageDescription = "Piesele Moldovei la Eurovision, ordonate după numărul de ascultări pe Spotify.";
 ---
 
-<BaseLayout
-  title="Moldova la Eurovision după ascultări Spotify | Nicu Soare Blog"
+<Layout
+  title={`Moldova la Eurovision după ascultări Spotify | ${config.site.title}`}
   description="Un top interactiv al pieselor Moldovei la Eurovision, ordonat după ascultări pe Spotify."
 >
-  <MoldovaSpotifyTable
-    entries={data.entries}
-    generatedAt={data.generatedAt}
-    previousGeneratedAt={data.previousGeneratedAt}
-    createdAt={createdAt}
-  />
-  <p class="data-note">
-    Coloana „Noi” compară cu snapshot-ul anterior. Am păstrat o singură versiune atunci când mai multe ID-uri Spotify aveau același contor de ascultări.
-  </p>
-</BaseLayout>
+  <Header />
+  <Breadcrumb />
+  <Main pageTitle={pageTitle} pageDesc={pageDescription} class="spotify-main">
+    <div class="mb-6">
+      <Datetime pubDatetime={createdAt} modDatetime={data.generatedAt} size="lg" />
+    </div>
+
+    <MoldovaSpotifyTable
+      entries={data.entries}
+      pageTitle={pageTitle}
+      generatedAt={data.generatedAt}
+      previousGeneratedAt={data.previousGeneratedAt}
+      createdAt={createdAt}
+    />
+  </Main>
+  <Footer />
+</Layout>
 
 <style>
-  :global(main) {
-    max-width: 72rem;
+  .spotify-main {
+    max-width: 84rem;
   }
 
   .data-note {
     width: min(68rem, 100%);
     margin-top: 1rem;
-    color: var(--muted);
+    color: var(--muted-foreground);
     font-size: 0.9rem;
   }
 </style>

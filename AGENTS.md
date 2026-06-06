@@ -5,10 +5,10 @@ Ghid pentru agenții care scriu sau editează rapid blogul.
 ## Reguli Obligatorii
 
 - Blogul este în română. Scrie conținutul public în română naturală, cu diacritice.
-- Articolele se pun în `src/content/blog/` ca `.md` sau `.mdx`.
-- Frontmatter-ul articolului trebuie să conțină `title`, `description`, `pubDate`, `createdDate`, `updatedDate`, `draft`.
+- Articolele se pun în `src/content/posts/` ca `.md` sau `.mdx`.
+- Frontmatter-ul articolului trebuie să conțină `title`, `description`, `pubDatetime`, `draft`.
 - Datele folosesc formatul `YYYY-MM-DD`. Dacă utilizatorul nu cere altă dată, folosește data curentă.
-- `createdDate` este data creării postării. `updatedDate` este ultima editare publică.
+- `pubDatetime` este data publicării. `modDatetime` este ultima editare publică și este opțională.
 - `draft: true` ascunde articolul din build-ul public; `draft: false` îl publică.
 - Slug-ul articolului vine din numele fișierului, deci folosește nume URL-friendly: litere mici, fără spații.
 - Nu schimba layout-ul, CSS-ul sau dependențele când cerința este doar despre conținut.
@@ -16,10 +16,10 @@ Ghid pentru agenții care scriu sau editează rapid blogul.
 
 ## Articol Nou
 
-1. Creează fișierul în `src/content/blog/`, de exemplu:
+1. Creează fișierul în `src/content/posts/`, de exemplu:
 
 ```txt
-src/content/blog/titlu-articol.md
+src/content/posts/titlu-articol.md
 ```
 
 2. Pornește de la acest șablon:
@@ -28,9 +28,10 @@ src/content/blog/titlu-articol.md
 ---
 title: Titlul articolului
 description: O propoziție clară care rezumă articolul.
-pubDate: 2026-06-06
-createdDate: 2026-06-06
-updatedDate: 2026-06-06
+pubDatetime: 2026-06-06
+modDatetime: 2026-06-06
+tags:
+  - blog
 draft: false
 ---
 
@@ -56,7 +57,7 @@ npm run build
 ## Editare Articol Existent
 
 - Păstrează frontmatter-ul valid.
-- Nu schimba `pubDate` decât dacă utilizatorul cere republicarea sau actualizarea datei.
+- Nu schimba `pubDatetime` decât dacă utilizatorul cere republicarea sau actualizarea datei.
 - Îmbunătățește claritatea fără să schimbi vocea personală a autorului.
 - Pentru modificări mari, păstrează paragrafele scurte și folosește heading-uri `##`.
 
@@ -71,11 +72,13 @@ npm run build
 
 ## Structură Proiect
 
-- `src/content/blog/` articolele blogului.
+- `src/content/posts/` articolele blogului.
+- `src/content/pages/` pagini de conținut, cum ar fi Despre.
 - `src/pages/index.astro` lista articolelor publicate.
-- `src/pages/blog/[...slug].astro` pagina de articol.
+- `src/pages/posts/[...page].astro` lista paginată de articole.
 - `src/pages/about.astro` pagina Despre.
-- `src/layouts/BaseLayout.astro` layout global, meta tags, header și navigație.
+- `src/layouts/Layout.astro` layout global, meta tags, header și navigație.
+- `astro-paper.config.ts` configurarea titlului, descrierii, limbii și funcțiilor AstroPaper.
 - `src/styles/global.css` stiluri globale.
 
 ## Comenzi

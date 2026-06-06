@@ -1,6 +1,6 @@
 # Nicu Soare Blog
 
-Blog personal construit cu [Astro](https://astro.build/) și publicat prin GitHub Pages.
+Blog personal construit cu [Astro](https://astro.build/) pe baza temei AstroPaper și publicat prin GitHub Pages.
 
 ## Dezvoltare
 
@@ -11,7 +11,7 @@ npm run dev
 
 ## Scriere
 
-Adaugă articole ca fișiere Markdown în `src/content/blog`.
+Adaugă articole ca fișiere Markdown sau MDX în `src/content/posts`.
 
 Fiecare articol are nevoie de frontmatter de forma:
 
@@ -19,7 +19,9 @@ Fiecare articol are nevoie de frontmatter de forma:
 ---
 title: Articolul meu
 description: Un scurt rezumat al articolului.
-pubDate: 2026-05-16
+pubDatetime: 2026-05-16
+tags:
+  - blog
 draft: false
 ---
 ```

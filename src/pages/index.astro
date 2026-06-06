@@ -1,63 +1,189 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import moldovaSpotifyData from '../data/moldova-eurovision-spotify.json';
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Socials from "@/components/Socials.astro";
+import Card from "@/components/Card.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import { getSortedPosts } from "@/utils/getSortedPosts";
+import { getPostUrl } from "@/utils/getPostPaths";
+import { useTranslations } from "@/i18n";
+import config from "@/config";
+import moldovaSpotifyData from "@/data/moldova-eurovision-spotify.json";
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const formatDate = (date: Date) =>
-  date.toLocaleDateString('ro-RO', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-const standalonePages = [
+const { socials, posts: postsConfig } = config;
+
+const locale = Astro.currentLocale ?? config.site.lang;
+const t = useTranslations(locale);
+
+const posts = await getCollection("posts");
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const pageEntries = [
   {
-    title: 'Topul pieselor Moldovei la Eurovision după ascultări pe Spotify',
-    description: 'Un top interactiv al pieselor Moldovei la Eurovision, cu ascultări, creștere și versiuni Spotify.',
-    href: `${base}/moldova-eurovision-spotify/`,
-    createdDate: new Date('2026-06-06'),
-    updatedDate: new Date(moldovaSpotifyData.generatedAt)
-  }
+    kind: "page",
+    title: "Topul pieselor Moldovei la Eurovision după ascultări pe Spotify",
+    description:
+      "Piesele Moldovei la Eurovision, ordonate după numărul de ascultări pe Spotify.",
+    href: `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}moldova-eurovision-spotify/`,
+    updatedDate: new Date(moldovaSpotifyData.generatedAt),
+  },
 ];
-
-const publications = [
-  ...standalonePages,
-  ...posts.map((post) => ({
-    title: post.data.title,
-    description: post.data.description,
-    href: `${base}/blog/${post.id}/`,
-    createdDate: post.data.createdDate,
-    updatedDate: post.data.updatedDate
-  }))
-].sort((a, b) => b.updatedDate.valueOf() - a.updatedDate.valueOf());
+const postEntries = recentPosts.map(post => ({
+  kind: "post",
+  title: post.data.title,
+  description: post.data.description,
+  href: getPostUrl(post.id, post.filePath, Astro.currentLocale),
+  updatedDate: new Date(post.data.modDatetime ?? post.data.pubDatetime),
+}));
+const recentEntries = [...pageEntries, ...postEntries].sort(
+  (a, b) => b.updatedDate.valueOf() - a.updatedDate.valueOf()
+);
+const homePath = getRelativeLocaleUrl(locale, "");
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("ro-RO", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
 ---
-<BaseLayout title="Nicu Soare Blog" description="Nicu Surfează Prin Internetul Din Moldova">
-  <section class="intro">
-    <h1>Nicu Soare</h1>
-    <p>
-      Nicu este activ pe internetul Moldovenesc din jurul anului 1998 și a văzut evoluția acestuia, care a trecut prin multe transformari.
-    </p>
-  </section>
 
-  <section class="post-list" aria-labelledby="latest-posts">
-    <h2 id="latest-posts">Ultimele publicări</h2>
+<Layout>
+  <Header />
+  <main
+    id="main-content"
+    data-layout="index"
+    data-home-path={homePath}
+    class="app-layout"
+  >
+    <section id="hero" class="border-border border-b pt-8 pb-6">
+      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
+        Nicu Soare Blog
+      </h1>
+      <a
+        target="_blank"
+        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
+        class="inline-block"
+        aria-label="Flux RSS"
+        title="Flux RSS"
+      >
+        <IconRss
+          width={20}
+          height={20}
+          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
+        />
+        <span class="sr-only">Flux RSS</span>
+      </a>
+
+      <p class="mt-2">
+        Nicu este activ pe internetul Moldovenesc din jurul anului 1998 și a văzut evoluția acestuia, care a trecut prin multe transformari.
+      </p>
+      <p class="mt-2">
+        Vezi și
+        <LinkButton
+          class="hover:text-accent underline decoration-dashed underline-offset-4"
+          href="/moldova-eurovision-spotify/"
+        >
+          topul Moldovei la Eurovision după Spotify
+        </LinkButton>.
+      </p>
+      {
+        socials.length > 0 && (
+          <div class="mt-4 flex max-sm:flex-col sm:items-center">
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
+              {t.home.socialLinks}:
+            </div>
+            <Socials />
+          </div>
+        )
+      }
+    </section>
+
     {
-      publications.map((item) => (
-        <article class="post-preview">
-          <p class="date">
-            Creat:
-            <time datetime={item.createdDate.toISOString()}>{formatDate(item.createdDate)}</time>
-            · Editat:
-            <time datetime={item.updatedDate.toISOString()}>{formatDate(item.updatedDate)}</time>
-          </p>
-          <h3>
-            <a href={item.href}>{item.title}</a>
-          </h3>
-          <p>{item.description}</p>
-        </article>
-      ))
+      featuredPosts.length > 0 && (
+        <section
+          id="featured"
+          class:list={[
+            "pt-12 pb-6",
+            { "border-border border-b": recentPosts.length > 0 },
+          ]}
+        >
+          <h2 class="text-2xl font-semibold tracking-wide">
+            {t.home.featured}
+          </h2>
+          <ul>
+            {featuredPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
     }
-  </section>
-</BaseLayout>
+
+    {
+      recentEntries.length > 0 && (
+        <section id="recent-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">
+            {t.home.recentPosts}
+          </h2>
+          <ul>
+            {recentEntries.slice(0, postsConfig.perIndex).map((item) => (
+              <li class="my-6">
+                <a
+                  href={item.href}
+                  class="text-accent inline-block text-lg font-medium decoration-dashed underline-offset-4 hover:underline focus-visible:no-underline focus-visible:underline-offset-0"
+                >
+                  <h3>{item.title}</h3>
+                </a>
+                <div class="text-muted-foreground flex items-center gap-x-2">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    class="inline-block size-6 min-w-5.5 scale-90"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM16 3v4M8 3v4M4 11h16M7 14h.013M10.01 14h.005M13.01 14h.005M16.015 14h.005M13.015 17h.005M7.01 17h.005M10.01 17h.005" />
+                  </svg>
+                  <time class="text-sm" datetime={item.updatedDate.toISOString()}>
+                    {formatDate(item.updatedDate)}
+                  </time>
+                </div>
+                <p>{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="my-8 text-center">
+      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
+        {t.home.allPosts}
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset;
+    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+    if (indexLayout?.layout) {
+      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+    }
+  });
+</script>

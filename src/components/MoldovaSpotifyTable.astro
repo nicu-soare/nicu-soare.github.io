@@ -8,6 +8,9 @@ type Entry = {
   previousPlays: number | null;
   newPlays: number | null;
   growthPercent: number | null;
+  recentDays: number | null;
+  recentPlaysPerDay: number | null;
+  recentPeriod: string | null;
   versionCount: number;
   topTrackName: string;
   spotifyUrl: string;
@@ -22,20 +25,14 @@ type Entry = {
   }>;
 };
 
-const { entries, generatedAt, previousGeneratedAt, createdAt } = Astro.props as {
-  entries: Entry[];
-  generatedAt: string;
-  previousGeneratedAt: string | null;
-  createdAt: string;
-};
+const { entries, pageTitle } = Astro.props as { entries: Entry[]; pageTitle: string };
 
 const formatNumber = (value: number) => new Intl.NumberFormat('ro-RO').format(value);
-const formatNewPlays = (value: number | null) => value === null ? '—' : `+${formatNumber(value)}`;
-const formatGrowth = (value: number | null) => value === null ? '—' : `+${value.toLocaleString('ro-RO')}%`;
+const formatRecentRate = (value: number | null) => value === null || value <= 0 ? '—' : `+${formatNumber(value)}/zi`;
 const years = entries.map((entry) => entry.year);
 const minYear = Math.min(...years);
 const maxYear = Math.max(...years);
-const missingYears = [];
+const missingYears: number[] = [];
 for (let year = minYear; year <= maxYear; year += 1) {
   if (!years.includes(year)) missingYears.push(year);
 }
@@ -43,21 +40,37 @@ for (let year = minYear; year <= maxYear; year += 1) {
 
 <section class="spotify-tool" aria-labelledby="moldova-spotify-heading">
   <div class="tool-header">
-    <p class="eyebrow">Moldova la Eurovision</p>
-    <h1 id="moldova-spotify-heading">Topul pieselor Moldovei la Eurovision după ascultări pe Spotify</h1>
-    <p class="lede">Piesele Moldovei la Eurovision, ordonate după numărul de ascultări pe Spotify.</p>
-    <p class="page-dates">
-      Creat: {createdAt}. Ultima actualizare a datelor: {generatedAt}
-      {previousGeneratedAt ? ` · comparație cu ${previousGeneratedAt}` : ''}
-    </p>
     <p class="year-range">
       Ani incluși: {minYear}-{maxYear}
-      {missingYears.length > 0 && `, fără ${missingYears.join(', ')}`}
+      {missingYears.length > 0 && `, fără ${missingYears.join(', ')}`} (anul cand Moldova n-a participat)
     </p>
+    <button
+      type="button"
+      class="fullscreen-toggle"
+      data-fullscreen-toggle
+      aria-pressed="false"
+    >
+      Full screen
+    </button>
   </div>
 
-  <div class="table-shell">
+  <div class="table-shell" data-table-shell>
+    <div class="fullscreen-heading">
+      <p class="fullscreen-kicker">Moldova la Eurovision</p>
+      <h2 class="fullscreen-title">{pageTitle}</h2>
+    </div>
+
     <table data-table>
+      <colgroup>
+        <col class="col-rank" />
+        <col class="col-song" />
+        <col class="col-artist" />
+        <col class="col-year" />
+        <col class="col-plays" />
+        <col class="col-recent" />
+        <col class="col-versions" />
+        <col class="col-spotify" />
+      </colgroup>
       <thead>
         <tr>
           <th><button type="button" data-sort="rank">#</button></th>
@@ -65,8 +78,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
           <th><button type="button" data-sort="artist">Artist</button></th>
           <th><button type="button" data-sort="year">An</button></th>
           <th><button type="button" data-sort="plays">Ascultări</button></th>
-          <th><button type="button" data-sort="newPlays">Noi</button></th>
-          <th><button type="button" data-sort="growthPercent">Creștere</button></th>
+          <th><button type="button" data-sort="recentPlaysPerDay">Ritm recent</button></th>
           <th><button type="button" data-sort="versionCount">Versiuni</button></th>
           <th>Spotify</th>
         </tr>
@@ -80,8 +92,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
               data-artist={entry.artist.toLowerCase()}
               data-year={entry.year}
               data-plays={entry.plays}
-              data-new-plays={entry.newPlays ?? -1}
-              data-growth-percent={entry.growthPercent ?? -1}
+              data-recent-plays-per-day={entry.recentPlaysPerDay ?? -1}
               data-version-count={entry.versionCount}
               data-search={`${entry.song} ${entry.artist} ${entry.year}`.toLowerCase()}
             >
@@ -90,8 +101,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
               <td data-label="Artist">{entry.artist}</td>
               <td class="numeric" data-label="An">{entry.year}</td>
               <td class="numeric strong" data-label="Ascultări">{formatNumber(entry.plays)}</td>
-              <td class:list={['numeric', entry.newPlays !== null && 'positive']} data-label="Noi">{formatNewPlays(entry.newPlays)}</td>
-              <td class:list={['numeric', entry.growthPercent !== null && 'positive']} data-label="Creștere">{formatGrowth(entry.growthPercent)}</td>
+              <td class:list={['numeric', entry.recentPlaysPerDay !== null && entry.recentPlaysPerDay > 0 && 'positive']} data-label="Ritm recent">{formatRecentRate(entry.recentPlaysPerDay)}</td>
               <td data-label="Versiuni">
                 <details class="versions">
                   <summary>{entry.versionCount} {entry.versionCount === 1 ? 'versiune' : 'versiuni'}</summary>
@@ -121,16 +131,42 @@ for (let year = minYear; year <= maxYear; year += 1) {
 
 <script>
   const table = document.querySelector('[data-table]');
+  const tableShell = document.querySelector('[data-table-shell]');
+  const fullscreenToggle = document.querySelector('[data-fullscreen-toggle]');
+  const body = document.body;
+
+  const setFullscreenState = (isFullscreen: boolean) => {
+    if (!(tableShell instanceof HTMLElement) || !(fullscreenToggle instanceof HTMLButtonElement)) return;
+
+    tableShell.classList.toggle('is-fullscreen', isFullscreen);
+    fullscreenToggle.textContent = isFullscreen ? 'Exit full screen' : 'Full screen';
+    fullscreenToggle.setAttribute('aria-pressed', String(isFullscreen));
+    body.classList.toggle('table-fullscreen-open', isFullscreen);
+    body.style.overflow = isFullscreen ? 'hidden' : '';
+  };
+
+  const exitFullscreen = () => setFullscreenState(false);
+
+  if (fullscreenToggle instanceof HTMLButtonElement) {
+    fullscreenToggle.addEventListener('click', () => {
+      const isFullscreen = tableShell instanceof HTMLElement && tableShell.classList.contains('is-fullscreen');
+      setFullscreenState(!isFullscreen);
+    });
+  }
+
+  window.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (event.key === 'Escape') exitFullscreen();
+  });
+
   if (table instanceof HTMLTableElement) {
     const tbody = table.tBodies[0];
     const rows = Array.from(tbody.rows);
     let sortKey = 'rank';
     let sortDirection = 1;
 
-    const getValue = (row, key) => {
+    const getValue = (row: HTMLTableRowElement, key: string) => {
       if (key === 'versionCount') return Number(row.dataset.versionCount || 0);
-      if (key === 'newPlays') return Number(row.dataset.newPlays || -1);
-      if (key === 'growthPercent') return Number(row.dataset.growthPercent || -1);
+      if (key === 'recentPlaysPerDay') return Number(row.dataset.recentPlaysPerDay || -1);
       if (key === 'rank' || key === 'year' || key === 'plays') {
         return Number(row.dataset[key] || 0);
       }
@@ -155,7 +191,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
     table.querySelectorAll('[data-sort]').forEach((button) => {
       button.addEventListener('click', () => {
         const nextKey = button.getAttribute('data-sort') || 'rank';
-        sortDirection = nextKey === sortKey ? sortDirection * -1 : ['plays', 'newPlays', 'growthPercent'].includes(nextKey) ? -1 : 1;
+        sortDirection = nextKey === sortKey ? sortDirection * -1 : ['plays', 'recentPlaysPerDay'].includes(nextKey) ? -1 : 1;
         sortKey = nextKey;
         render();
       });
@@ -165,51 +201,134 @@ for (let year = minYear; year <= maxYear; year += 1) {
 
 <style>
   .spotify-tool {
-    width: min(68rem, 100%);
+    width: 100%;
   }
 
   .tool-header {
-    max-width: 46rem;
-    margin-bottom: 1.6rem;
-  }
-
-  h1 {
-    max-width: 18ch;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
     margin-bottom: 1rem;
-    font-size: clamp(2.4rem, 6vw, 4rem);
-  }
-
-  .lede {
-    margin-bottom: 0.45rem;
-    max-width: 42rem;
-    color: var(--muted);
-    font-size: 1.05rem;
   }
 
   .year-range {
     margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
-
-  .page-dates {
-    margin: 0 0 0.35rem;
-    color: var(--muted);
+    color: var(--muted-foreground);
     font-size: 0.95rem;
   }
 
   .table-shell {
+    position: relative;
     overflow-x: auto;
     border: 1px solid var(--border);
     border-radius: 0.5rem;
-    background: white;
+    background: var(--background);
+  }
+
+  .fullscreen-toggle {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--muted);
+    color: var(--foreground);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.55rem 0.85rem;
+  }
+
+  .fullscreen-toggle:hover {
+    background: var(--accent);
+    color: var(--background);
+  }
+
+  .table-shell.is-fullscreen {
+    position: fixed;
+    inset: 1rem;
+    z-index: 60;
+    overflow: auto;
+    padding: 0;
+    border-radius: 0.75rem;
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.22);
+  }
+
+  .fullscreen-heading {
+    display: none;
+  }
+
+  .table-shell.is-fullscreen .fullscreen-heading {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem 1rem 0.85rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--background);
+  }
+
+  .fullscreen-kicker {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+
+  .fullscreen-title {
+    margin: 0;
+    color: var(--foreground);
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .table-shell.is-fullscreen table {
+    min-width: max(64rem, 100%);
+  }
+
+  .table-shell.is-fullscreen thead th {
+    position: sticky;
+    top: 4.3rem;
+    z-index: 1;
   }
 
   table {
     width: 100%;
-    min-width: 70rem;
+    min-width: 64rem;
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 0.95rem;
+  }
+
+  .col-rank {
+    width: 4rem;
+  }
+
+  .col-song {
+    width: 18%;
+  }
+
+  .col-artist {
+    width: 24%;
+  }
+
+  .col-year {
+    width: 5.5rem;
+  }
+
+  .col-plays {
+    width: 9.5rem;
+  }
+
+  .col-recent {
+    width: 10rem;
+  }
+
+  .col-versions {
+    width: 11rem;
+  }
+
+  .col-spotify {
+    width: 6rem;
   }
 
   th,
@@ -221,8 +340,8 @@ for (let year = minYear; year <= maxYear; year += 1) {
   }
 
   th {
-    background: #f4f7f8;
-    color: var(--muted);
+    background: var(--muted);
+    color: var(--muted-foreground);
     font-size: 0.78rem;
     text-transform: uppercase;
   }
@@ -249,23 +368,31 @@ for (let year = minYear; year <= maxYear; year += 1) {
 
   .song,
   .strong {
-    color: var(--text);
+    color: var(--foreground);
     font-weight: 700;
   }
 
   .positive {
-    color: var(--accent-strong);
+    color: var(--accent);
     font-weight: 700;
   }
 
   .versions {
-    min-width: 14rem;
+    min-width: 0;
   }
 
   .versions summary {
     color: var(--accent);
     cursor: pointer;
     font-weight: 700;
+  }
+
+  .versions[open] {
+    display: block;
+    padding: 0.35rem 0.55rem 0.1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--muted);
   }
 
   .versions ol {
@@ -285,7 +412,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
   }
 
   .versions li span {
-    color: var(--muted);
+    color: var(--muted-foreground);
     font-size: 0.82rem;
     line-height: 1.35;
   }
@@ -297,22 +424,15 @@ for (let year = minYear; year <= maxYear; year += 1) {
     font-variant-numeric: tabular-nums;
   }
 
-  @media (max-width: 48rem) {
+  @media (max-width: 72rem) {
     .spotify-tool {
       width: 100%;
     }
 
     .tool-header {
+      flex-direction: column;
+      align-items: flex-start;
       margin-bottom: 1.2rem;
-    }
-
-    h1 {
-      max-width: 15ch;
-      font-size: clamp(2.15rem, 13vw, 3.1rem);
-    }
-
-    .lede {
-      font-size: 1rem;
     }
 
     .table-shell {
@@ -348,7 +468,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
     tr {
       border: 1px solid var(--border);
       border-radius: 0.65rem;
-      background: white;
+      background: var(--background);
       padding: 0.95rem;
     }
 
@@ -364,7 +484,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
 
     td::before {
       content: attr(data-label);
-      color: var(--muted);
+      color: var(--muted-foreground);
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -383,8 +503,8 @@ for (let year = minYear; year <= maxYear; year += 1) {
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      background: #eef6f5;
-      color: var(--accent-strong);
+      background: var(--muted);
+      color: var(--accent);
       font-weight: 800;
     }
 
@@ -413,6 +533,13 @@ for (let year = minYear; year <= maxYear; year += 1) {
 
     .versions ol {
       padding-left: 1rem;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .table-shell.is-fullscreen {
+      inset: 0.5rem;
+      border-radius: 0.5rem;
     }
   }
 </style>

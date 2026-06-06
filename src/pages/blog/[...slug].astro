@@ -1,37 +1,34 @@
 ---
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import { getPostUrl } from "@/utils/getPostPaths";
+import config from "@/config";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
 
-  return posts.map((post) => ({
+  return posts.map(post => ({
     params: { slug: post.id },
-    props: { post }
+    props: {
+      title: post.data.title,
+      target: getPostUrl(post.id, post.filePath, config.site.lang),
+    },
   }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
-const formatDate = (date: Date) =>
-  date.toLocaleDateString('ro-RO', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+const { title, target } = Astro.props;
 ---
-<BaseLayout title={`${post.data.title} | Nicu Soare Blog`} description={post.data.description}>
-  <article class="post">
-    <header>
-      <p class="date">
-        Creat:
-        <time datetime={post.data.createdDate.toISOString()}>{formatDate(post.data.createdDate)}</time>
-        · Ultima editare:
-        <time datetime={post.data.updatedDate.toISOString()}>{formatDate(post.data.updatedDate)}</time>
-      </p>
-      <h1>{post.data.title}</h1>
-      <p>{post.data.description}</p>
-    </header>
-    <Content />
-  </article>
-</BaseLayout>
+
+<!doctype html>
+<html lang={config.site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={new URL(target, Astro.site)} />
+    <title>{title} | {config.site.title}</title>
+  </head>
+  <body>
+    <p>
+      Articolul s-a mutat la <a href={target}>{target}</a>.
+    </p>
+  </body>
+</html>
