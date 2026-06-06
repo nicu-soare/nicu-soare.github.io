@@ -2,6 +2,8 @@
 title: Salut, lume
 description: O primă notă pe acest nou blog Astro.
 pubDate: 2026-05-16
+createdDate: 2026-05-16
+updatedDate: 2026-05-16
 draft: false
 ---
 

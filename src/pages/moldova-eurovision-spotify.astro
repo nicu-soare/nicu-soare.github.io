@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MoldovaSpotifyTable from '../components/MoldovaSpotifyTable.astro';
+import data from '../data/moldova-eurovision-spotify.json';
+
+const createdAt = '2026-06-06';
+---
+
+<BaseLayout
+  title="Moldova la Eurovision după ascultări Spotify | Nicu Soare Blog"
+  description="Un top interactiv al pieselor Moldovei la Eurovision, ordonat după ascultări pe Spotify."
+>
+  <MoldovaSpotifyTable
+    entries={data.entries}
+    generatedAt={data.generatedAt}
+    previousGeneratedAt={data.previousGeneratedAt}
+    createdAt={createdAt}
+  />
+  <p class="data-note">
+    Coloana „Noi” compară cu snapshot-ul anterior. Am păstrat o singură versiune atunci când mai multe ID-uri Spotify aveau același contor de ascultări.
+  </p>
+</BaseLayout>
+
+<style>
+  :global(main) {
+    max-width: 72rem;
+  }
+
+  .data-note {
+    width: min(68rem, 100%);
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>

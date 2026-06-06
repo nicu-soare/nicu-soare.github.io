@@ -6,8 +6,9 @@ Ghid pentru agenții care scriu sau editează rapid blogul.
 
 - Blogul este în română. Scrie conținutul public în română naturală, cu diacritice.
 - Articolele se pun în `src/content/blog/` ca `.md` sau `.mdx`.
-- Frontmatter-ul articolului trebuie să conțină `title`, `description`, `pubDate`, `draft`.
-- `pubDate` folosește formatul `YYYY-MM-DD`. Dacă utilizatorul nu cere altă dată, folosește data curentă.
+- Frontmatter-ul articolului trebuie să conțină `title`, `description`, `pubDate`, `createdDate`, `updatedDate`, `draft`.
+- Datele folosesc formatul `YYYY-MM-DD`. Dacă utilizatorul nu cere altă dată, folosește data curentă.
+- `createdDate` este data creării postării. `updatedDate` este ultima editare publică.
 - `draft: true` ascunde articolul din build-ul public; `draft: false` îl publică.
 - Slug-ul articolului vine din numele fișierului, deci folosește nume URL-friendly: litere mici, fără spații.
 - Nu schimba layout-ul, CSS-ul sau dependențele când cerința este doar despre conținut.
@@ -28,6 +29,8 @@ src/content/blog/titlu-articol.md
 title: Titlul articolului
 description: O propoziție clară care rezumă articolul.
 pubDate: 2026-06-06
+createdDate: 2026-06-06
+updatedDate: 2026-06-06
 draft: false
 ---
 

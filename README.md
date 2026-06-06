@@ -1,4 +1,4 @@
-# Blog personal
+# Nicu Soare Blog
 
 Blog personal construit cu [Astro](https://astro.build/) și publicat prin GitHub Pages.
 
