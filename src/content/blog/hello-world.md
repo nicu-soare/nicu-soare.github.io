@@ -1,10 +1,10 @@
 ---
-title: Hello World
-description: A first note from this new Astro blog.
+title: Salut, lume
+description: O primă notă pe acest nou blog Astro.
 pubDate: 2026-05-16
 draft: false
 ---
 
-This is the first post on my new personal blog.
+Acesta este primul articol de pe noul meu blog personal.
 
-Astro keeps the writing flow simple: add Markdown files in `src/content/blog`, commit, and GitHub Pages publishes the built site.
+Astro păstrează fluxul de scriere simplu: adaugi fișiere Markdown în `src/content/blog`, faci commit, iar GitHub Pages publică site-ul construit.

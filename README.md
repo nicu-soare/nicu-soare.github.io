@@ -1,35 +1,35 @@
-# Personal Blog
+# Blog personal
 
-Personal blog built with [Astro](https://astro.build/) and deployed to GitHub Pages.
+Blog personal construit cu [Astro](https://astro.build/) și publicat prin GitHub Pages.
 
-## Development
+## Dezvoltare
 
 ```sh
 npm install
 npm run dev
 ```
 
-## Writing
+## Scriere
 
-Add posts as Markdown files in `src/content/blog`.
+Adaugă articole ca fișiere Markdown în `src/content/blog`.
 
-Each post needs frontmatter like this:
+Fiecare articol are nevoie de frontmatter de forma:
 
 ```md
 ---
-title: My Post
-description: A short summary of the post.
+title: Articolul meu
+description: Un scurt rezumat al articolului.
 pubDate: 2026-05-16
 draft: false
 ---
 ```
 
-## Deployment
+## Publicare
 
-The site is configured for the GitHub Pages URL:
+Site-ul este configurat pentru URL-ul GitHub Pages:
 
 ```txt
 https://nicu-soare.github.io/
 ```
 
-The workflow in `.github/workflows/deploy.yml` builds the site and deploys `dist` when changes are pushed to `main`.
+Workflow-ul din `.github/workflows/deploy.yml` construiește site-ul și publică `dist` când modificările sunt împinse pe `main`.

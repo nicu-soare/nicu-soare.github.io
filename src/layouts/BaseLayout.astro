@@ -1,12 +1,12 @@
 ---
 import '../styles/global.css';
 
-const { title = 'Personal Blog', description = 'Notes, projects, and essays.' } = Astro.props;
+const { title = 'Blog personal', description = 'Notițe, proiecte și eseuri.' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <!doctype html>
-<html lang="en">
+<html lang="ro">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,10 +16,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href={`${base}/`}>Personal Blog</a>
-      <nav aria-label="Primary navigation">
-        <a href={`${base}/`}>Home</a>
-        <a href={`${base}/about/`}>About</a>
+      <a class="brand" href={`${base}/`}>Blog personal</a>
+      <nav aria-label="Navigație principală">
+        <a href={`${base}/`}>Acasă</a>
+        <a href={`${base}/about/`}>Despre</a>
       </nav>
     </header>
     <main>
