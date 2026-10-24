@@ -11,6 +11,3 @@ description: Despre acest blog personal.
       <li>Sustin activ Moldova in diverse moduri.</li>
       <li>Imi place diverse genuri de muzica.</li>
     </ul>
-     <p>
-      Am trait in 3 tari peste hotare. Franta, Marea Britanie si acum sunt stabilit Olanda.
-     </p>
