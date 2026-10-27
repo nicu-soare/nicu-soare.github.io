@@ -4,9 +4,7 @@ description: Ce permite deja legea, ce e pregătit pentru mai târziu și cum a 
 locale: ro
 ---
 
-_Ce permite deja legea, ce e pregătit pentru mai târziu și cum a trecut prin Parlament. Fiecare afirmație are linkul la sursă._
-
-**Trei lucruri de știut.** Actul de identitate digital la secția de vot e deja permis de lege, din 26 august 2026. Votul la distanță există deja în Codul electoral ca o categorie, căreia îi lipsește doar numele metodei. Schimbarea a trecut prin Parlament în patru săptămâni, fără nicio obiecție de fond.
+Legea nr. 192 din 25 august 2026, care modifică Codul electoral, a fost votată de Parlament cu 53 de voturi și publicată în Monitorul Oficial nr. 394-397 din 26 august 2026 (art. 426), în aceeași zi intrând în vigoare. Ea permite deja votul cu actul de identitate digital la secția de vot și pregătește votul la distanță, căruia îi mai lipsește doar o lege care să numească metoda. A trecut prin Parlament în patru săptămâni, fără nicio obiecție de fond.
 
 ## 1. Ce e deja permis: actul digital la secția de vot
 
