@@ -1,0 +1,398 @@
+---
+type HistoryPoint = {
+  date: string;
+  total: number;
+  daily?: number | null;
+};
+
+type Entry = {
+  song: string;
+  recentDays: number | null;
+  recentPeriod: string | null;
+  recentPlaysPerDay: number | null;
+  history?: HistoryPoint[];
+};
+
+const { entry } = Astro.props as { entry: Entry };
+const locale = Astro.currentLocale ?? "ro";
+const isRomanian = locale === "ro";
+
+const formatNumber = (value: number) => new Intl.NumberFormat(locale).format(value);
+const formatDate = (value: string) =>
+  new Intl.DateTimeFormat(locale, {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(`${value}T00:00:00Z`));
+
+const dayMs = 24 * 60 * 60 * 1000;
+const [periodStart, periodEnd] = (entry.recentPeriod ?? "").split(" - ");
+const startDate = periodStart ? new Date(`${periodStart}T00:00:00Z`) : null;
+const endDate = periodEnd ? new Date(`${periodEnd}T00:00:00Z`) : null;
+
+const knownPoints = (entry.history ?? [])
+  .map((point) => ({
+    ...point,
+    dateObj: new Date(`${point.date}T00:00:00Z`),
+  }))
+  .filter((point) => !Number.isNaN(point.dateObj.valueOf()))
+  .sort((a, b) => a.dateObj.valueOf() - b.dateObj.valueOf());
+
+const pointByDate = new Map(knownPoints.map((point) => [point.date, point]));
+
+const toDateKey = (date: Date) => date.toISOString().slice(0, 10);
+const addDays = (date: Date, days: number) => new Date(date.valueOf() + days * dayMs);
+const diffDays = (start: Date, end: Date) =>
+  Math.round((end.valueOf() - start.valueOf()) / dayMs);
+const forecastDays = 7;
+
+const chartDates: Date[] = [];
+if (startDate && endDate) {
+  for (let current = startDate; current <= endDate; current = addDays(current, 1)) {
+    chartDates.push(current);
+  }
+} else {
+  knownPoints.slice(-12).forEach((point) => chartDates.push(point.dateObj));
+}
+
+const chartPoints: Array<{
+  date: string;
+  dateObj: Date;
+  total: number;
+  rate: number;
+  source: "observed" | "estimated" | "projected";
+}> = [];
+
+for (const dateObj of chartDates) {
+  const date = toDateKey(dateObj);
+  const exact = pointByDate.get(date);
+  const previousKnown = [...knownPoints].reverse().find((point) => point.dateObj < dateObj);
+  const nextKnown = knownPoints.find((point) => point.dateObj > dateObj);
+
+  let total = exact?.total ?? null;
+  let source: "observed" | "estimated" | "projected" = exact ? "observed" : "estimated";
+
+  if (total === null && previousKnown && nextKnown) {
+    const span = Math.max(1, diffDays(previousKnown.dateObj, nextKnown.dateObj));
+    const offset = diffDays(previousKnown.dateObj, dateObj);
+    const ratio = offset / span;
+    total = Math.round(previousKnown.total + (nextKnown.total - previousKnown.total) * ratio);
+  } else if (total === null && previousKnown) {
+    total = previousKnown.total;
+  } else if (total === null && nextKnown) {
+    total = nextKnown.total;
+  } else if (total === null) {
+    total = 0;
+  }
+
+  const previousTotal = chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].total : total;
+  const rate = Math.max(0, total - previousTotal);
+
+  chartPoints.push({
+    date,
+    dateObj,
+    total,
+    rate,
+    source,
+  });
+}
+
+const recentWindow = chartPoints.slice(-7);
+const projectionRate = Math.max(
+  1,
+  Math.round(
+    recentWindow.reduce((sum, point) => sum + point.rate, 0) /
+      Math.max(1, recentWindow.length),
+  ),
+);
+let projectedTotal = chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].total : 0;
+const projectedPoints = Array.from({ length: forecastDays }, (_, index) => {
+  const prevDate = chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].dateObj : endDate;
+  const dateObj = prevDate ? addDays(prevDate, index + 1) : addDays(new Date(), index + 1);
+  projectedTotal += projectionRate;
+  return {
+    date: toDateKey(dateObj),
+    dateObj,
+    total: projectedTotal,
+    rate: projectionRate,
+    source: "projected" as const,
+  };
+});
+
+const allPoints = [...chartPoints, ...projectedPoints];
+
+const maxRate = Math.max(...allPoints.map((point) => point.rate), 1);
+const averageRate = entry.recentPlaysPerDay ?? 0;
+const width = 820;
+const height = 240;
+const padding = { top: 24, right: 22, bottom: 42, left: 54 };
+const plotWidth = width - padding.left - padding.right;
+const plotHeight = height - padding.top - padding.bottom;
+const barGap = allPoints.length > 16 ? 2 : 6;
+const barWidth = allPoints.length
+  ? Math.max(4, (plotWidth - barGap * (allPoints.length - 1)) / allPoints.length)
+  : 0;
+const xFor = (index: number) => padding.left + index * (barWidth + barGap);
+const yFor = (value: number) =>
+  padding.top + plotHeight - (value / maxRate) * plotHeight;
+const avgY = yFor(averageRate);
+const firstObservedPoint = chartPoints[0];
+const lastObservedPoint = chartPoints[chartPoints.length - 1];
+const lastProjectedPoint = projectedPoints[projectedPoints.length - 1];
+const observedCount = chartPoints.filter((point) => point.source === "observed").length;
+const estimatedCount = chartPoints.filter((point) => point.source === "estimated").length;
+---
+
+<section class="pace-card" aria-labelledby="viva-pace-heading">
+  <div class="pace-header">
+    <div>
+      <p class="pace-kicker">{isRomanian ? "Ritm zilnic aproximativ" : "Approximate daily rate"}</p>
+      <h2 id="viva-pace-heading">Viva, Moldova!</h2>
+      <p class="pace-copy">
+        {isRomanian
+          ? `Graficul folosește ${chartPoints.length} zile din perioada ${entry.recentPeriod}, plus ${forecastDays} zile proiectate separat după ultimul punct cunoscut. Avem ${observedCount} puncte măsurate și ${estimatedCount} zile estimate liniar între ele, ca să vezi media pentru intervalele în care lipsesc date.`
+          : `The chart uses ${chartPoints.length} days from ${entry.recentPeriod}, plus ${forecastDays} projected days after the last known point. We have ${observedCount} measured points and ${estimatedCount} days linearly estimated between them, so you can see the average across gaps in the data.`}
+      </p>
+    </div>
+
+    <div class="pace-stat">
+      <strong>{formatNumber(averageRate)}</strong>
+      <span>
+        {isRomanian
+          ? `ascultări/zi în ultimele ${entry.recentDays ?? chartPoints.length} zile`
+          : `plays/day in the last ${entry.recentDays ?? chartPoints.length} days`}
+      </span>
+    </div>
+  </div>
+
+  <div class="chart-shell">
+    <div class="chart-scroll">
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        role="img"
+        aria-label={
+          isRomanian
+            ? "Graficul ritmului zilnic aproximativ pentru Viva, Moldova! în ultimele săptămâni"
+            : "Approximate daily pace chart for Viva, Moldova! over the last weeks"
+        }
+      >
+        <rect
+          x="0"
+          y="0"
+          width={width}
+          height={height}
+          rx="20"
+          fill="transparent"
+        />
+        <line
+          x1={padding.left}
+          x2={width - padding.right}
+          y1={padding.top + plotHeight}
+          y2={padding.top + plotHeight}
+          stroke="currentColor"
+          stroke-opacity="0.2"
+        />
+        <line
+          x1={padding.left}
+          x2={width - padding.right}
+          y1={avgY}
+          y2={avgY}
+          stroke="var(--accent)"
+          stroke-dasharray="6 6"
+          stroke-width="2"
+        />
+        <text
+          x={width - padding.right}
+          y={Math.max(14, avgY - 6)}
+          text-anchor="end"
+          class="avg-label"
+        >
+          {isRomanian ? "medie" : "average"} {formatNumber(averageRate)}/{isRomanian ? "zi" : "day"}
+        </text>
+        {
+          chartPoints.map((point, index) => (
+            <g>
+              <title>
+                {`${formatDate(point.date)} · ${formatNumber(point.rate)} ${
+                  isRomanian ? "ascultări/zi" : "plays/day"
+                }${point.source === "estimated" ? (isRomanian ? " · estimat" : " · estimated") : ""}`}
+              </title>
+              <rect
+                x={xFor(index)}
+                y={yFor(point.rate)}
+                width={barWidth}
+                height={padding.top + plotHeight - yFor(point.rate)}
+                rx="5"
+                class:list={[
+                  "bar",
+                  point.source === "estimated" && "estimated",
+                  point.source === "projected" && "projected",
+                { peak: point.rate === maxRate },
+              ]}
+              />
+            </g>
+          ))
+        }
+        {
+          projectedPoints.map((point, index) => (
+            <g>
+              <title>
+                {`${formatDate(point.date)} · ${formatNumber(point.rate)} ${
+                  isRomanian ? "ascultări/zi · proiectat" : "plays/day · projected"
+                }`}
+              </title>
+              <rect
+                x={xFor(chartPoints.length + index)}
+                y={yFor(point.rate)}
+                width={barWidth}
+                height={padding.top + plotHeight - yFor(point.rate)}
+                rx="5"
+                class:list={["bar", "projected", { peak: point.rate === maxRate }]}
+              />
+            </g>
+          ))
+        }
+      </svg>
+    </div>
+
+    <div class="chart-foot">
+      <span>{firstObservedPoint ? formatDate(firstObservedPoint.date) : "—"}</span>
+      <span>
+        {lastObservedPoint
+          ? isRomanian
+            ? `măsurat până la ${formatDate(lastObservedPoint.date)}`
+            : `measured through ${formatDate(lastObservedPoint.date)}`
+          : "—"}
+      </span>
+      <span>
+        {lastProjectedPoint
+          ? isRomanian
+            ? `proiecție până la ${formatDate(lastProjectedPoint.date)}`
+            : `projection through ${formatDate(lastProjectedPoint.date)}`
+          : ""}
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pace-card {
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    background:
+      linear-gradient(180deg, rgb(0 0 0 / 0.03), transparent 45%),
+      var(--background);
+    padding: 1.25rem;
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.05);
+  }
+
+  .pace-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .pace-kicker {
+    margin: 0 0 0.35rem;
+    color: var(--muted-foreground);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pace-header h2 {
+    margin: 0;
+    font-size: clamp(1.3rem, 2vw, 1.75rem);
+  }
+
+  .pace-copy {
+    max-width: 58ch;
+    margin: 0.6rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+
+  .pace-stat {
+    display: grid;
+    gap: 0.2rem;
+    justify-items: end;
+    white-space: nowrap;
+  }
+
+  .pace-stat strong {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    line-height: 1;
+    color: var(--foreground);
+  }
+
+  .pace-stat span {
+    color: var(--muted-foreground);
+    font-size: 0.88rem;
+  }
+
+  .chart-shell {
+    margin-top: 1rem;
+  }
+
+  .chart-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--background);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    min-width: 44rem;
+    color: var(--foreground);
+  }
+
+  .bar {
+    fill: var(--accent);
+    opacity: 0.82;
+  }
+
+  .bar.estimated {
+    opacity: 0.4;
+  }
+
+  .bar.projected {
+    opacity: 0.3;
+    fill: var(--foreground);
+  }
+
+  .bar.peak {
+    opacity: 1;
+  }
+
+  .avg-label {
+    fill: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .chart-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 48rem) {
+    .pace-header {
+      flex-direction: column;
+    }
+
+    .pace-stat {
+      justify-items: start;
+    }
+  }
+</style>

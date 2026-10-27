@@ -32,6 +32,10 @@ export default {
     featured: "Recomandate",
     recentPosts: "Articole recente",
     allPosts: "Toate articolele",
+    intro:
+      "Nicu este activ pe internetul Moldovenesc din jurul anului 1998 și a văzut evoluția acestuia, care a trecut prin multe transformări. Este inginer software și lucrează ca tech lead.",
+    seeAlso: "Vezi și",
+    eurovisionLink: "topul Moldovei la Eurovision după Spotify",
   },
   footer: {
     copyright: "Copyright",

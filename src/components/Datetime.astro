@@ -35,7 +35,7 @@ const datetime = dayjs(isModified ? modDatetime : pubDatetime).tz(
   postTimezone ?? config.site.timezone
 );
 
-const date = new Intl.DateTimeFormat("ro-RO", {
+const date = new Intl.DateTimeFormat(Astro.currentLocale ?? config.site.lang, {
   year: "numeric",
   month: "long",
   day: "numeric",

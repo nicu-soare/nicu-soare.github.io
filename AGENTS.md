@@ -90,3 +90,19 @@ npm run preview
 ```
 
 Rulează `npm run build` după modificări la conținut, pagini, layout sau configurare.
+
+## Eurovision Spotify
+
+- Pagina interactivă este `src/pages/top-moldova-eurovision-songs.astro`.
+- Datele vin din `src/data/moldova-eurovision-spotify.json`.
+- Sursa canonică este fluxul Spotify-first din `~/perso/projects/spotify_stats`.
+- Pentru o regenerare completă, folosește wrapper-ul:
+
+```sh
+cd ~/perso/projects/spotify_stats && .venv/bin/python refresh_moldova_eurovision_blog.py --date YYYY-MM-DD
+```
+
+- `refresh_moldova_eurovision_blog.py` pornește din `spotify_playcounts.py --input-csv` pe `Moldova Eurovision Spotify tracks.csv`, apoi rulează discover, aggregate, snapshot și export.
+- Folosește data curentă la `--date`, cu excepția cazului în care utilizatorul cere explicit altă dată.
+- Exportul include seria `history` pentru fiecare piesă, construită din snapshot-uri Spotify; `track_history.json` rămâne doar un fallback vechi.
+- După regenerare, rulează `npm run build` în blog și verifică ruta `/top-moldova-eurovision-songs/` în output.

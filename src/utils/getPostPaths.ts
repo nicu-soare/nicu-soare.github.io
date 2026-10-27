@@ -3,16 +3,21 @@ import { BLOG_PATH } from "@/content.config";
 import { slugifyStr } from "./slugify";
 import config from "@/config";
 
+const supportedLocales = new Set(["ro", "en"]);
+
 function getPostPathSegments(filePath: string | undefined): string[] {
-  return (
+  const segments =
     filePath
       ?.replace(BLOG_PATH, "")
       .split("/")
       .filter(path => path !== "")
-      .filter(path => !path.startsWith("_"))
-      .slice(0, -1)
-      .map(segment => slugifyStr(segment)) ?? []
-  );
+      .filter(path => !path.startsWith("_")) ?? [];
+
+  if (segments.length > 0 && supportedLocales.has(segments[0])) {
+    segments.shift();
+  }
+
+  return segments.slice(0, -1).map(segment => slugifyStr(segment));
 }
 
 function getIdSlug(id: string): string {

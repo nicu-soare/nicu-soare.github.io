@@ -26,9 +26,12 @@ type Entry = {
 };
 
 const { entries, pageTitle } = Astro.props as { entries: Entry[]; pageTitle: string };
+const locale = Astro.currentLocale ?? "ro";
+const isRomanian = locale === "ro";
 
-const formatNumber = (value: number) => new Intl.NumberFormat('ro-RO').format(value);
-const formatRecentRate = (value: number | null) => value === null || value <= 0 ? '—' : `+${formatNumber(value)}/zi`;
+const formatNumber = (value: number) => new Intl.NumberFormat(locale).format(value);
+const formatRecentRate = (value: number | null) =>
+  value === null || value <= 0 ? "—" : `+${formatNumber(value)}/${isRomanian ? "zi" : "day"}`;
 const years = entries.map((entry) => entry.year);
 const minYear = Math.min(...years);
 const maxYear = Math.max(...years);
@@ -41,22 +44,24 @@ for (let year = minYear; year <= maxYear; year += 1) {
 <section class="spotify-tool" aria-labelledby="moldova-spotify-heading">
   <div class="tool-header">
     <p class="year-range">
-      Ani incluși: {minYear}-{maxYear}
-      {missingYears.length > 0 && `, fără ${missingYears.join(', ')}`} (anul cand Moldova n-a participat)
+      {isRomanian ? "Ani incluși" : "Included years"}: {minYear}-{maxYear}
+      {missingYears.length > 0 &&
+        (isRomanian ? `, fără ${missingYears.join(", ")}` : `, excluding ${missingYears.join(", ")}`)}
+      {isRomanian ? " (anul când Moldova n-a participat)" : " (years when Moldova did not participate)"}
     </p>
-    <button
-      type="button"
-      class="fullscreen-toggle"
-      data-fullscreen-toggle
-      aria-pressed="false"
-    >
-      Full screen
-    </button>
+      <button
+        type="button"
+        class="fullscreen-toggle"
+        data-fullscreen-toggle
+        aria-pressed="false"
+      >
+        {isRomanian ? "Ecran complet" : "Full screen"}
+      </button>
   </div>
 
   <div class="table-shell" data-table-shell>
     <div class="fullscreen-heading">
-      <p class="fullscreen-kicker">Moldova la Eurovision</p>
+      <p class="fullscreen-kicker">{isRomanian ? "Moldova la Eurovision" : "Moldova at Eurovision"}</p>
       <h2 class="fullscreen-title">{pageTitle}</h2>
     </div>
 
@@ -74,12 +79,12 @@ for (let year = minYear; year <= maxYear; year += 1) {
       <thead>
         <tr>
           <th><button type="button" data-sort="rank">#</button></th>
-          <th><button type="button" data-sort="song">Piesă</button></th>
-          <th><button type="button" data-sort="artist">Artist</button></th>
-          <th><button type="button" data-sort="year">An</button></th>
-          <th><button type="button" data-sort="plays">Ascultări</button></th>
-          <th><button type="button" data-sort="recentPlaysPerDay">Ritm recent</button></th>
-          <th><button type="button" data-sort="versionCount">Versiuni</button></th>
+          <th><button type="button" data-sort="song">{isRomanian ? "Piesă" : "Song"}</button></th>
+          <th><button type="button" data-sort="artist">{isRomanian ? "Artist" : "Artist"}</button></th>
+          <th><button type="button" data-sort="year">{isRomanian ? "An" : "Year"}</button></th>
+          <th><button type="button" data-sort="plays">{isRomanian ? "Ascultări" : "Plays"}</button></th>
+          <th><button type="button" data-sort="recentPlaysPerDay">{isRomanian ? "Ritm recent" : "Recent rate"}</button></th>
+          <th><button type="button" data-sort="versionCount">{isRomanian ? "Versiuni" : "Versions"}</button></th>
           <th>Spotify</th>
         </tr>
       </thead>
@@ -97,14 +102,14 @@ for (let year = minYear; year <= maxYear; year += 1) {
               data-search={`${entry.song} ${entry.artist} ${entry.year}`.toLowerCase()}
             >
               <td class="rank" data-label="#">{entry.rank}</td>
-              <td class="song" data-label="Piesă">{entry.song}</td>
-              <td data-label="Artist">{entry.artist}</td>
-              <td class="numeric" data-label="An">{entry.year}</td>
-              <td class="numeric strong" data-label="Ascultări">{formatNumber(entry.plays)}</td>
-              <td class:list={['numeric', entry.recentPlaysPerDay !== null && entry.recentPlaysPerDay > 0 && 'positive']} data-label="Ritm recent">{formatRecentRate(entry.recentPlaysPerDay)}</td>
-              <td data-label="Versiuni">
+              <td class="song" data-label={isRomanian ? "Piesă" : "Song"}>{entry.song}</td>
+              <td data-label={isRomanian ? "Artist" : "Artist"}>{entry.artist}</td>
+              <td class="numeric" data-label={isRomanian ? "An" : "Year"}>{entry.year}</td>
+              <td class="numeric strong" data-label={isRomanian ? "Ascultări" : "Plays"}>{formatNumber(entry.plays)}</td>
+              <td class:list={['numeric', entry.recentPlaysPerDay !== null && entry.recentPlaysPerDay > 0 && 'positive']} data-label={isRomanian ? "Ritm recent" : "Recent rate"}>{formatRecentRate(entry.recentPlaysPerDay)}</td>
+              <td data-label={isRomanian ? "Versiuni" : "Versions"}>
                 <details class="versions">
-                  <summary>{entry.versionCount} {entry.versionCount === 1 ? 'versiune' : 'versiuni'}</summary>
+                  <summary>{entry.versionCount} {entry.versionCount === 1 ? (isRomanian ? 'versiune' : 'version') : (isRomanian ? 'versiuni' : 'versions')}</summary>
                   <ol>
                     {entry.versions.map((version) => (
                       <li>
@@ -119,7 +124,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
                 </details>
               </td>
               <td data-label="Spotify">
-                <a href={entry.spotifyUrl} target="_blank" rel="noreferrer">Ascultă</a>
+                <a href={entry.spotifyUrl} target="_blank" rel="noreferrer">{isRomanian ? "Ascultă" : "Listen"}</a>
               </td>
             </tr>
           ))
@@ -134,12 +139,15 @@ for (let year = minYear; year <= maxYear; year += 1) {
   const tableShell = document.querySelector('[data-table-shell]');
   const fullscreenToggle = document.querySelector('[data-fullscreen-toggle]');
   const body = document.body;
+  const locale = document.documentElement.lang.startsWith('ro') ? 'ro' : 'en';
+  const fullscreenLabel = locale === 'ro' ? 'Ecran complet' : 'Full screen';
+  const exitFullscreenLabel = locale === 'ro' ? 'Ieși din ecran complet' : 'Exit full screen';
 
   const setFullscreenState = (isFullscreen: boolean) => {
     if (!(tableShell instanceof HTMLElement) || !(fullscreenToggle instanceof HTMLButtonElement)) return;
 
     tableShell.classList.toggle('is-fullscreen', isFullscreen);
-    fullscreenToggle.textContent = isFullscreen ? 'Exit full screen' : 'Full screen';
+    fullscreenToggle.textContent = isFullscreen ? exitFullscreenLabel : fullscreenLabel;
     fullscreenToggle.setAttribute('aria-pressed', String(isFullscreen));
     body.classList.toggle('table-fullscreen-open', isFullscreen);
     body.style.overflow = isFullscreen ? 'hidden' : '';
@@ -181,7 +189,7 @@ for (let year = minYear; year <= maxYear; year += 1) {
           if (typeof first === 'number' && typeof second === 'number') {
             return (first - second) * sortDirection;
           }
-          return String(first).localeCompare(String(second), 'ro') * sortDirection;
+          return String(first).localeCompare(String(second), locale) * sortDirection;
         });
 
       rows.forEach((row) => row.remove());

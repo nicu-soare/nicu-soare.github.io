@@ -30,6 +30,9 @@ export interface UIStrings {
     featured: string;
     recentPosts: string;
     allPosts: string;
+    intro: string;
+    seeAlso: string;
+    eurovisionLink: string;
   };
   footer: {
     copyright: string;

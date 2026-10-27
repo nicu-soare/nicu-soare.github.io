@@ -10,6 +10,8 @@ const posts = defineCollection({
   schema: ({ image }) =>
     z.object({
       author: z.string().default(config.site.author),
+      locale: z.enum(["ro", "en"]).optional(),
+      translationKey: z.string().optional(),
       pubDatetime: z.date(),
       modDatetime: z.date().optional().nullable(),
       title: z.string(),
@@ -28,6 +30,7 @@ const pages = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/pages" }),
   schema: z.object({
     title: z.string(),
+    locale: z.enum(["ro", "en"]).optional(),
     description: z.string().optional(),
     ogImage: z.string().optional(),
     canonicalURL: z.string().optional(),

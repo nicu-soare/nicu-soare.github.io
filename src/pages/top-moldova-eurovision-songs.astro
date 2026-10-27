@@ -5,18 +5,30 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import Datetime from "@/components/Datetime.astro";
 import Footer from "@/components/Footer.astro";
+import VivaPaceCard from "@/components/VivaPaceCard.astro";
 import MoldovaSpotifyTable from "@/components/MoldovaSpotifyTable.astro";
 import data from "@/data/moldova-eurovision-spotify.json";
 import config from "@/config";
 
+const locale = Astro.currentLocale ?? config.site.lang;
+const isRomanian = locale === "ro";
 const createdAt = '2026-06-06';
-const pageTitle = "Topul pieselor Moldovei la Eurovision (2005-2026)";
-const pageDescription = "Piesele Moldovei la Eurovision, ordonate după numărul de ascultări pe Spotify.";
+const pageTitle = isRomanian
+  ? "Topul pieselor Moldovei la Eurovision (2005-2026)"
+  : "Moldova's Eurovision songs ranking (2005-2026)";
+const pageDescription = isRomanian
+  ? "Piesele Moldovei la Eurovision, ordonate după numărul de ascultări pe Spotify."
+  : "Moldova's Eurovision songs, ordered by Spotify plays.";
+const vivaEntry = data.entries.find((entry) => entry.year === 2026 && entry.song === "Viva, Moldova!");
 ---
 
 <Layout
-  title={`Moldova la Eurovision după ascultări Spotify | ${config.site.title}`}
-  description="Un top interactiv al pieselor Moldovei la Eurovision, ordonat după ascultări pe Spotify."
+  title={isRomanian
+    ? `Moldova la Eurovision după ascultări Spotify | ${config.site.title}`
+    : `Moldova Eurovision songs by Spotify plays | ${config.site.title}`}
+  description={isRomanian
+    ? "Un top interactiv al pieselor Moldovei la Eurovision, ordonat după ascultări pe Spotify."
+    : "An interactive ranking of Moldova's Eurovision songs by Spotify plays."}
 >
   <Header />
   <Breadcrumb />
@@ -24,6 +36,8 @@ const pageDescription = "Piesele Moldovei la Eurovision, ordonate după numărul
     <div class="mb-6">
       <Datetime pubDatetime={createdAt} modDatetime={data.generatedAt} size="lg" />
     </div>
+
+    {vivaEntry && <VivaPaceCard entry={vivaEntry} />}
 
     <MoldovaSpotifyTable
       entries={data.entries}

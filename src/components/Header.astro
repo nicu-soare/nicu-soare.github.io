@@ -26,6 +26,13 @@ const pathWithoutTrailingSlash =
     : relativePath;
 
 const currentPath = stripLocale(pathWithoutTrailingSlash, locale);
+const alternateLocale = locale === "ro" ? "en" : "ro";
+// Pages that exist only in Romanian: the switch goes to the English home page.
+const romanianOnlyPaths = ["/legislatie-vot-electronic"];
+const alternateHref = getRelativeLocaleUrl(
+  alternateLocale,
+  romanianOnlyPaths.includes(currentPath) ? "" : currentPath.replace(/^\/+/, "")
+);
 
 const isActive = (path: string) => {
   const currentPathArray = currentPath.split("/").filter(p => p.trim());
@@ -169,6 +176,18 @@ const isActive = (path: string) => {
             </li>
           )
         }
+        <li class="col-span-2 flex items-center justify-center">
+          <LinkButton
+            href={alternateHref}
+            class="focus-outline inline-flex items-center gap-2 rounded-full border border-border px-3 py-2 text-sm font-medium"
+            aria-label={locale === "ro" ? "Switch to English" : "Schimbă în română"}
+            title={locale === "ro" ? "Switch to English" : "Schimbă în română"}
+          >
+            <span class:list={{ "text-accent": locale === "ro" }}>RO</span>
+            <span aria-hidden="true">/</span>
+            <span class:list={{ "text-accent": locale === "en" }}>EN</span>
+          </LinkButton>
+        </li>
       </ul>
     </nav>
   </div>
