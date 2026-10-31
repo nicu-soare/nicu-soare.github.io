@@ -39,8 +39,6 @@ export default {
     eurovisionLink: "the Moldova Eurovision Spotify ranking",
   },
   footer: {
-    copyright: "Copyright",
-    allRightsReserved: "All rights reserved.",
     onlineSince: "online since 1998",
     build: "build",
     systemOk: "all systems go",

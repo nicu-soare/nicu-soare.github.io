@@ -39,8 +39,6 @@ export default {
     eurovisionLink: "topul Moldovei la Eurovision după Spotify",
   },
   footer: {
-    copyright: "Copyright",
-    allRightsReserved: "Toate drepturile rezervate.",
     onlineSince: "online din 1998",
     build: "build",
     systemOk: "sistem ok",

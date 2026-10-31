@@ -10,7 +10,6 @@ type Props = {
 const { noMarginTop = false, class: className, ...attrs } = Astro.props;
 
 const t = useTranslations(Astro.currentLocale);
-const currentYear = new Date().getFullYear();
 const buildDate = new Date().toISOString().slice(0, 10);
 ---
 
@@ -19,30 +18,25 @@ const buildDate = new Date().toISOString().slice(0, 10);
   {...attrs}
 >
   <div class="wave-rule" role="presentation"></div>
-  <p
-    class="text-muted-foreground mt-4 text-center font-mono text-sm sm:text-start"
-  >
-    <span class="text-accent">&gt;</span>
-    {t.footer.onlineSince}
-    <span class="opacity-50">&nbsp;·&nbsp;</span>
-    {t.footer.build}
-    {buildDate}
-    <span class="opacity-50">&nbsp;·&nbsp;</span>
-    <span class="text-sea">■</span>
-    {t.footer.systemOk}
-    <span
-      class="cursor-block"
-      style="width:.45em;height:.85em"
-      aria-hidden="true"></span>
-  </p>
   <div
-    class="flex flex-col items-center justify-between pt-2 pb-6 sm:flex-row-reverse sm:pb-4"
+    class="flex flex-col items-center justify-between gap-2 py-5 sm:flex-row"
   >
+    <p
+      class="text-muted-foreground m-0 text-center font-mono text-sm sm:text-start"
+    >
+      <span class="text-accent">&gt;</span>
+      {t.footer.onlineSince}
+      <span class="opacity-50">&nbsp;·&nbsp;</span>
+      {t.footer.build}
+      {buildDate}
+      <span class="opacity-50">&nbsp;·&nbsp;</span>
+      <span class="text-sea">■</span>
+      {t.footer.systemOk}
+      <span
+        class="cursor-block"
+        style="width:.45em;height:.85em"
+        aria-hidden="true"></span>
+    </p>
     <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>{t.footer.copyright} &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>{t.footer.allRightsReserved}</span>
-    </div>
   </div>
 </footer>

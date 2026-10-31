@@ -36,8 +36,6 @@ export interface UIStrings {
     eurovisionLink: string;
   };
   footer: {
-    copyright: string;
-    allRightsReserved: string;
     onlineSince: string;
     build: string;
     systemOk: string;
