@@ -1,20 +1,20 @@
 {
   "country": "Moldova",
-  "generatedAt": "2026-06-09",
-  "previousGeneratedAt": "2026-06-06",
+  "generatedAt": "2026-10-31",
+  "previousGeneratedAt": "2026-06-09",
   "entries": [
     {
       "rank": 1,
       "year": 2010,
       "song": "Run Away",
       "artist": "Sunstroke Project, Olia Tira",
-      "plays": 129836544,
-      "previousPlays": 43202370,
-      "newPlays": 86634174,
-      "growthPercent": 200.5,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 165309771,
+      "previousPlays": 129836544,
+      "newPlays": 35473227,
+      "growthPercent": 27.3,
+      "recentDays": 144,
+      "recentPlaysPerDay": 246342,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 3,
       "topTrackId": "7m7yPZ1D51mbKuqAJFsmTf",
@@ -28,6 +28,10 @@
         {
           "date": "2026-06-09",
           "total": 129836544
+        },
+        {
+          "date": "2026-10-31",
+          "total": 165309771
         }
       ],
       "versions": [
@@ -36,8 +40,8 @@
           "trackName": "Run Away",
           "artists": "Sunstroke Project, Olia Tira",
           "albumName": "Run Away",
-          "plays": 43278848,
-          "source": "search",
+          "plays": 55103257,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/7m7yPZ1D51mbKuqAJFsmTf"
         },
         {
@@ -45,8 +49,8 @@
           "trackName": "Run Away",
           "artists": "Sunstroke, Olia Tira",
           "albumName": "Run Away",
-          "plays": 43278848,
-          "source": "search",
+          "plays": 55103257,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3E8cgWzXSWJthJiXBieSg4"
         },
         {
@@ -54,7 +58,7 @@
           "trackName": "Run Away - Radio Edit",
           "artists": "Sunstroke Project, Olia Tira",
           "albumName": "Run Away",
-          "plays": 43278848,
+          "plays": 55103257,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/06bUBaq3PKtjc6DvHN6uiX"
         }
@@ -65,13 +69,13 @@
       "year": 2017,
       "song": "Hey Mamma",
       "artist": "Sunstroke Project",
-      "plays": 124649239,
-      "previousPlays": 41672263,
-      "newPlays": 82976976,
-      "growthPercent": 199.1,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 125890815,
+      "previousPlays": 124649239,
+      "newPlays": 1241576,
+      "growthPercent": 1.0,
+      "recentDays": 144,
+      "recentPlaysPerDay": 8622,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 5,
       "topTrackId": "7EfS0QO3m5tZlKZEzcvWaG",
@@ -85,6 +89,10 @@
         {
           "date": "2026-06-09",
           "total": 124649239
+        },
+        {
+          "date": "2026-10-31",
+          "total": 125890815
         }
       ],
       "versions": [
@@ -93,8 +101,8 @@
           "trackName": "Hey Mamma",
           "artists": "Sunstroke Project",
           "albumName": "Hey Mamma",
-          "plays": 41385947,
-          "source": "search",
+          "plays": 41799929,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/7EfS0QO3m5tZlKZEzcvWaG"
         },
         {
@@ -102,7 +110,7 @@
           "trackName": "Hey Mamma - Radio Edit",
           "artists": "Sunstroke Project",
           "albumName": "Hey Mamma",
-          "plays": 41385947,
+          "plays": 41799929,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/59JayqW5h9kyhLEcCTwPRX"
         },
@@ -111,8 +119,8 @@
           "trackName": "Hey mamma - Radio Edit",
           "artists": "Sunstroke Project",
           "albumName": "Hey mamma",
-          "plays": 41385947,
-          "source": "search",
+          "plays": 41799929,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/04gKS1shscgAw289k59JZP"
         },
         {
@@ -120,7 +128,7 @@
           "trackName": "Hey mamma - Instrumental Version",
           "artists": "Sunstroke Project",
           "albumName": "Hey mamma",
-          "plays": 297547,
+          "plays": 299179,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/1y0NRdpu5PCr2MSUp8lrqk"
         },
@@ -129,8 +137,8 @@
           "trackName": "Hey mamma - Antony Waldhorn Remix",
           "artists": "Sunstroke Project, Antony Waldhorn",
           "albumName": "Hey mamma",
-          "plays": 193851,
-          "source": "search",
+          "plays": 191849,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/6pDnUCAhSSKFHDx7DqwMbJ"
         }
       ]
@@ -140,15 +148,15 @@
       "year": 2022,
       "song": "Trenuletul",
       "artist": "Zdob si Zdub, Fratii Advahov",
-      "plays": 40958928,
-      "previousPlays": 14074556,
-      "newPlays": 26884372,
-      "growthPercent": 191.0,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 56178783,
+      "previousPlays": 40958928,
+      "newPlays": 15219855,
+      "growthPercent": 37.2,
+      "recentDays": 144,
+      "recentPlaysPerDay": 105693,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
-      "versionCount": 6,
+      "versionCount": 9,
       "topTrackId": "2bLUrsnsmsQOfJiDputksn",
       "topTrackName": "Trenulețul",
       "spotifyUrl": "https://open.spotify.com/track/2bLUrsnsmsQOfJiDputksn",
@@ -160,6 +168,10 @@
         {
           "date": "2026-06-09",
           "total": 40958928
+        },
+        {
+          "date": "2026-10-31",
+          "total": 56178783
         }
       ],
       "versions": [
@@ -168,8 +180,8 @@
           "trackName": "Trenulețul",
           "artists": "Zdob si Zdub, Fratii Advahov",
           "albumName": "Best Eurovision Rock Songs",
-          "plays": 13059734,
-          "source": "search",
+          "plays": 13381043,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/2bLUrsnsmsQOfJiDputksn"
         },
         {
@@ -177,16 +189,25 @@
           "trackName": "Trenulețul",
           "artists": "Zdob si Zdub, Fratii Advahov",
           "albumName": "La mulți ani, România!",
-          "plays": 13059734,
-          "source": "search",
+          "plays": 13381043,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3XZeOVnLVDcawOji3ZFMbX"
+        },
+        {
+          "trackId": "47O0ZSOZR5xOyWxJaN1qvV",
+          "trackName": "Trenulețul",
+          "artists": "Zdob si Zdub, Fratii Advahov",
+          "albumName": "Top Trending Romania - Vara 2022",
+          "plays": 13381043,
+          "source": "search",
+          "spotifyUrl": "https://open.spotify.com/track/47O0ZSOZR5xOyWxJaN1qvV"
         },
         {
           "trackId": "63idiVcxkGB3hgH6n3qKqM",
           "trackName": "Trenulețul (cu Frații Advahov)",
           "artists": "Zdob si Zdub, Fratii Advahov",
           "albumName": "Trenulețul",
-          "plays": 13059734,
+          "plays": 13381043,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/63idiVcxkGB3hgH6n3qKqM"
         },
@@ -195,7 +216,7 @@
           "trackName": "Trenulețul (cu Frații Advahov) - Eurovision 2022",
           "artists": "Zdob si Zdub, Fratii Advahov",
           "albumName": "Trenulețul (cu Frații Advahov) [Eurovision 2022]",
-          "plays": 755332,
+          "plays": 791760,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/0IcFeQZD19y54GGhUeCQD7"
         },
@@ -204,18 +225,36 @@
           "trackName": "Trenulețul - Eurovision 2022",
           "artists": "Zdob si Zdub, Fratii Advahov",
           "albumName": "Eurovision Hits & Classics",
-          "plays": 755332,
-          "source": "search",
+          "plays": 791760,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/5pggdsj20kyjPLPJfRjGqB"
+        },
+        {
+          "trackId": "48lNwcphY6WYfjOCYgQll4",
+          "trackName": "Trenulețul - Eurovision 2022",
+          "artists": "Zdob si Zdub, Fratii Advahov",
+          "albumName": "Rock românesc - Best Of 2022",
+          "plays": 791760,
+          "source": "search",
+          "spotifyUrl": "https://open.spotify.com/track/48lNwcphY6WYfjOCYgQll4"
         },
         {
           "trackId": "7HebJsuwpl4qTDnKCb9cTs",
           "trackName": "Trenulețul - Eurovision 2022 - Moldova / Karaoke Version",
           "artists": "Zdob si Zdub, Fratii Advahov",
           "albumName": "Eurovision Song Contest Turin 2022 (Karaoke Version)",
-          "plays": 269062,
+          "plays": 273056,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/7HebJsuwpl4qTDnKCb9cTs"
+        },
+        {
+          "trackId": "4CX0wWpCSPxWAgB81AGcm2",
+          "trackName": "Trenuletul",
+          "artists": "Andra, Orchestra Fraților Advahov, Zdob si Zdub",
+          "albumName": "TRADIȚIONAL 2 @ Wembley Arena (Concert Extraordinar de Folclor la Londra)",
+          "plays": 6275,
+          "source": "search",
+          "spotifyUrl": "https://open.spotify.com/track/4CX0wWpCSPxWAgB81AGcm2"
         }
       ]
     },
@@ -224,13 +263,13 @@
       "year": 2021,
       "song": "Sugar",
       "artist": "Natalia Gordienko",
-      "plays": 30640895,
-      "previousPlays": 10257477,
-      "newPlays": 20383418,
-      "growthPercent": 198.7,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 31065097,
+      "previousPlays": 30640895,
+      "newPlays": 424202,
+      "growthPercent": 1.4,
+      "recentDays": 144,
+      "recentPlaysPerDay": 2946,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 4,
       "topTrackId": "4ajjeZhSAVz2Zp9rf9OTIL",
@@ -244,6 +283,10 @@
         {
           "date": "2026-06-09",
           "total": 30640895
+        },
+        {
+          "date": "2026-10-31",
+          "total": 31065097
         }
       ],
       "versions": [
@@ -252,7 +295,7 @@
           "trackName": "Sugar",
           "artists": "Natalia Gordienko",
           "albumName": "Sugar",
-          "plays": 10189536,
+          "plays": 10330669,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/4ajjeZhSAVz2Zp9rf9OTIL"
         },
@@ -261,8 +304,8 @@
           "trackName": "Sugar",
           "artists": "Natalia Gordienko",
           "albumName": "Eurovision Song Contest 2022",
-          "plays": 10189536,
-          "source": "search",
+          "plays": 10330669,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/1AK0F0u4Zk3j7Qmf3yExr3"
         },
         {
@@ -270,8 +313,8 @@
           "trackName": "Sugar",
           "artists": "Natalia Gordienko",
           "albumName": "Eurovision Hits & Classics",
-          "plays": 10189536,
-          "source": "search",
+          "plays": 10330669,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/4Ts31UcTlZ5Eo5nxEwpMIp"
         },
         {
@@ -279,7 +322,7 @@
           "trackName": "Sugar - Eurovision 2021 - Moldova / Karaoke Version",
           "artists": "Natalia Gordienko",
           "albumName": "Eurovision Song Contest Rotterdam 2021 (Karaoke Version)",
-          "plays": 72287,
+          "plays": 73090,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3U4HuZ6JNVw92fH1PolLh9"
         }
@@ -290,13 +333,13 @@
       "year": 2023,
       "song": "Soarele si Luna",
       "artist": "Pasha Parfeni",
-      "plays": 15433892,
-      "previousPlays": 15423872,
-      "newPlays": 10020,
-      "growthPercent": 0.1,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 15783110,
+      "previousPlays": 15433892,
+      "newPlays": 349218,
+      "growthPercent": 2.3,
+      "recentDays": 144,
+      "recentPlaysPerDay": 2425,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 2,
       "topTrackId": "6SO3p9lb1qiPMN1e7iHAjv",
@@ -310,6 +353,10 @@
         {
           "date": "2026-06-09",
           "total": 15433892
+        },
+        {
+          "date": "2026-10-31",
+          "total": 15783110
         }
       ],
       "versions": [
@@ -318,7 +365,7 @@
           "trackName": "Soarele si Luna",
           "artists": "Pasha Parfeni",
           "albumName": "Soarele si Luna",
-          "plays": 15281968,
+          "plays": 15628909,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/6SO3p9lb1qiPMN1e7iHAjv"
         },
@@ -327,7 +374,7 @@
           "trackName": "Soarele și Luna - Eurovision 2023 - Moldova / Karaoke",
           "artists": "Pasha Parfeni",
           "albumName": "Eurovision Song Contest Liverpool 2023 (Karaoke Version)",
-          "plays": 151924,
+          "plays": 154201,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/5z0rLnx9yzQFRWK3qgG5yp"
         }
@@ -335,64 +382,16 @@
     },
     {
       "rank": 6,
-      "year": 2018,
-      "song": "My Lucky Day",
-      "artist": "DoReDoS",
-      "plays": 10062092,
-      "previousPlays": 5028859,
-      "newPlays": 5033233,
-      "growthPercent": 100.1,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
-      "recentSource": "snapshot",
-      "versionCount": 2,
-      "topTrackId": "0ThWw4Mty8Sb0mzaXyFvt8",
-      "topTrackName": "My Lucky Day",
-      "spotifyUrl": "https://open.spotify.com/track/0ThWw4Mty8Sb0mzaXyFvt8",
-      "history": [
-        {
-          "date": "2026-06-06",
-          "total": 5028859
-        },
-        {
-          "date": "2026-06-09",
-          "total": 10062092
-        }
-      ],
-      "versions": [
-        {
-          "trackId": "0ThWw4Mty8Sb0mzaXyFvt8",
-          "trackName": "My Lucky Day",
-          "artists": "DoReDoS",
-          "albumName": "My Lucky Day",
-          "plays": 5031046,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/0ThWw4Mty8Sb0mzaXyFvt8"
-        },
-        {
-          "trackId": "2UryzFeEldqpIBMPNK3rA7",
-          "trackName": "My lucky day",
-          "artists": "DoReDoS",
-          "albumName": "My lucky day",
-          "plays": 5031046,
-          "source": "search",
-          "spotifyUrl": "https://open.spotify.com/track/2UryzFeEldqpIBMPNK3rA7"
-        }
-      ]
-    },
-    {
-      "rank": 7,
       "year": 2026,
       "song": "Viva, Moldova!",
       "artist": "Satoshi",
-      "plays": 9829999,
-      "previousPlays": 7313044,
-      "newPlays": 2516955,
-      "growthPercent": 34.4,
-      "recentDays": 15,
-      "recentPlaysPerDay": 167797,
-      "recentPeriod": "2026-05-25 - 2026-06-09",
+      "plays": 14611086,
+      "previousPlays": 9829999,
+      "newPlays": 4781087,
+      "growthPercent": 48.6,
+      "recentDays": 144,
+      "recentPlaysPerDay": 33202,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 6,
       "topTrackId": "3slA6oMqkypLVUkEjk2xfQ",
@@ -410,6 +409,10 @@
         {
           "date": "2026-06-09",
           "total": 9829999
+        },
+        {
+          "date": "2026-10-31",
+          "total": 14611086
         }
       ],
       "versions": [
@@ -418,7 +421,7 @@
           "trackName": "Viva, Moldova!",
           "artists": "Satoshi",
           "albumName": "Viva, Moldova!",
-          "plays": 9551872,
+          "plays": 14097354,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3slA6oMqkypLVUkEjk2xfQ"
         },
@@ -427,16 +430,25 @@
           "trackName": "Viva, Moldova! - Hardstyle Remix",
           "artists": "Satoshi",
           "albumName": "Viva, Moldova! (Hardstyle Remix)",
-          "plays": 116957,
+          "plays": 190640,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/4ACK2j0DI7WdrvrQys6uQj"
+        },
+        {
+          "trackId": "0HTiPbo0NO94O5rTQElarK",
+          "trackName": "Viva, Moldova! - Eurovision 2026 - Moldova / Live at Eurovision Semi Final, Vienna",
+          "artists": "Satoshi",
+          "albumName": "Viva, Moldova! (Eurovision 2026 - Moldova / Live at Eurovision Semi Final, Vienna)",
+          "plays": 145526,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/0HTiPbo0NO94O5rTQElarK"
         },
         {
           "trackId": "3gpOiHwktXJ6cGeZKvsOoM",
           "trackName": "Viva, Moldova! - Andrew Rayel Remix",
           "artists": "Satoshi, Andrew Rayel",
           "albumName": "Viva, Moldova! (Andrew Rayel Remix)",
-          "plays": 68180,
+          "plays": 86131,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3gpOiHwktXJ6cGeZKvsOoM"
         },
@@ -445,27 +457,70 @@
           "trackName": "Viva, Moldova! - Club Remix",
           "artists": "Satoshi",
           "albumName": "Viva, Moldova! (Club Remix)",
-          "plays": 43798,
+          "plays": 74412,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/6ptBdbNtsZ4KVgbM1Sg8er"
-        },
-        {
-          "trackId": "0HTiPbo0NO94O5rTQElarK",
-          "trackName": "Viva, Moldova! - Eurovision 2026 - Moldova / Live at Eurovision Semi Final, Vienna",
-          "artists": "Satoshi",
-          "albumName": "Viva, Moldova! (Eurovision 2026 - Moldova / Live at Eurovision Semi Final, Vienna)",
-          "plays": 39226,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/0HTiPbo0NO94O5rTQElarK"
         },
         {
           "trackId": "7x3DOfuDjLn7RreU53p4nX",
           "trackName": "Viva Moldova! - Eurovision 2026 - Moldova / Karaoke",
           "artists": "Satoshi",
           "albumName": "Eurovision Song Contest Vienna 2026 (Karaoke Version)",
-          "plays": 9966,
+          "plays": 17023,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/7x3DOfuDjLn7RreU53p4nX"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "year": 2018,
+      "song": "My Lucky Day",
+      "artist": "DoReDoS",
+      "plays": 10217452,
+      "previousPlays": 10062092,
+      "newPlays": 155360,
+      "growthPercent": 1.5,
+      "recentDays": 144,
+      "recentPlaysPerDay": 1079,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
+      "recentSource": "snapshot",
+      "versionCount": 2,
+      "topTrackId": "0ThWw4Mty8Sb0mzaXyFvt8",
+      "topTrackName": "My Lucky Day",
+      "spotifyUrl": "https://open.spotify.com/track/0ThWw4Mty8Sb0mzaXyFvt8",
+      "history": [
+        {
+          "date": "2026-06-06",
+          "total": 5028859
+        },
+        {
+          "date": "2026-06-09",
+          "total": 10062092
+        },
+        {
+          "date": "2026-10-31",
+          "total": 10217452
+        }
+      ],
+      "versions": [
+        {
+          "trackId": "0ThWw4Mty8Sb0mzaXyFvt8",
+          "trackName": "My Lucky Day",
+          "artists": "DoReDoS",
+          "albumName": "My Lucky Day",
+          "plays": 5108726,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/0ThWw4Mty8Sb0mzaXyFvt8"
+        },
+        {
+          "trackId": "2UryzFeEldqpIBMPNK3rA7",
+          "trackName": "My lucky day",
+          "artists": "DoReDoS",
+          "albumName": "My lucky day",
+          "plays": 5108726,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/2UryzFeEldqpIBMPNK3rA7"
         }
       ]
     },
@@ -474,13 +529,13 @@
       "year": 2024,
       "song": "In the Middle",
       "artist": "Natalia Barbu",
-      "plays": 3556556,
-      "previousPlays": 3554264,
-      "newPlays": 2292,
-      "growthPercent": 0.1,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 3628250,
+      "previousPlays": 3556556,
+      "newPlays": 71694,
+      "growthPercent": 2.0,
+      "recentDays": 144,
+      "recentPlaysPerDay": 498,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 5,
       "topTrackId": "5ViF3hsL0iwD7jhh5JB2Ip",
@@ -494,6 +549,10 @@
         {
           "date": "2026-06-09",
           "total": 3556556
+        },
+        {
+          "date": "2026-10-31",
+          "total": 3628250
         }
       ],
       "versions": [
@@ -502,7 +561,7 @@
           "trackName": "In the Middle",
           "artists": "Natalia Barbu",
           "albumName": "In the Middle",
-          "plays": 3524449,
+          "plays": 3595310,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/5ViF3hsL0iwD7jhh5JB2Ip"
         },
@@ -511,7 +570,7 @@
           "trackName": "In The Middle - Eurovision 2024 - Moldova / Karaoke",
           "artists": "Natalia Barbu",
           "albumName": "Eurovision Song Contest Malmö 2024 (Karaoke Version)",
-          "plays": 17399,
+          "plays": 17769,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3EtAVs2XFZ1FWdQvojdePd"
         },
@@ -520,7 +579,7 @@
           "trackName": "In The Middle - Carnival Brain Remix",
           "artists": "Natalia Barbu, Carnival Brain",
           "albumName": "In the Middle (Carnival Brain Remix)",
-          "plays": 9397,
+          "plays": 9796,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/7f4G4mhBEU3GmDG4gHXGmo"
         },
@@ -529,7 +588,7 @@
           "trackName": "In The Middle - Veelantyne Remix",
           "artists": "Natalia Barbu, Veelantyne",
           "albumName": "In The Middle (Veelantyne Remix)",
-          "plays": 5311,
+          "plays": 5375,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3Rap9lpNMDoy6AZQvu0zlh"
         },
@@ -539,137 +598,23 @@
           "artists": "Natalia Barbu, Softbeat",
           "albumName": "In the Middle (Softbeat Remix)",
           "plays": 0,
-          "source": "search",
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/6LRZEeNZ7yMW1Z55AyW7pU"
         }
       ]
     },
     {
       "rank": 9,
-      "year": 2016,
-      "song": "Falling Stars",
-      "artist": "Lidia Isac",
-      "plays": 2999806,
-      "previousPlays": 1499508,
-      "newPlays": 1500298,
-      "growthPercent": 100.1,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
-      "recentSource": "snapshot",
-      "versionCount": 2,
-      "topTrackId": "7gb3w8xWgszx40JIz0R0NN",
-      "topTrackName": "Falling Stars - Radio Edit",
-      "spotifyUrl": "https://open.spotify.com/track/7gb3w8xWgszx40JIz0R0NN",
-      "history": [
-        {
-          "date": "2026-06-06",
-          "total": 1499508
-        },
-        {
-          "date": "2026-06-09",
-          "total": 2999806
-        }
-      ],
-      "versions": [
-        {
-          "trackId": "7gb3w8xWgszx40JIz0R0NN",
-          "trackName": "Falling Stars - Radio Edit",
-          "artists": "Lidia Isac",
-          "albumName": "Falling Stars",
-          "plays": 1499903,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/7gb3w8xWgszx40JIz0R0NN"
-        },
-        {
-          "trackId": "10YxDfkTgUDAWPlRQkUpOi",
-          "trackName": "Falling Stars - Radio Edit",
-          "artists": "Lidia Isac",
-          "albumName": "Falling Stars (Radio Edit)",
-          "plays": 1499903,
-          "source": "search",
-          "spotifyUrl": "https://open.spotify.com/track/10YxDfkTgUDAWPlRQkUpOi"
-        }
-      ]
-    },
-    {
-      "rank": 10,
-      "year": 2005,
-      "song": "Boonika Bate Doba",
-      "artist": "Zdob si Zdub",
-      "plays": 2622438,
-      "previousPlays": 1403624,
-      "newPlays": 1218814,
-      "growthPercent": 86.8,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
-      "recentSource": "snapshot",
-      "versionCount": 4,
-      "topTrackId": "4KIoPhF6nBKgLJ5NZFQne5",
-      "topTrackName": "Boonika Bate Doba",
-      "spotifyUrl": "https://open.spotify.com/track/4KIoPhF6nBKgLJ5NZFQne5",
-      "history": [
-        {
-          "date": "2026-06-06",
-          "total": 1403624
-        },
-        {
-          "date": "2026-06-09",
-          "total": 2622438
-        }
-      ],
-      "versions": [
-        {
-          "trackId": "4KIoPhF6nBKgLJ5NZFQne5",
-          "trackName": "Boonika Bate Doba",
-          "artists": "Zdob si Zdub",
-          "albumName": "Ethnomecanica",
-          "plays": 1216967,
-          "source": "search",
-          "spotifyUrl": "https://open.spotify.com/track/4KIoPhF6nBKgLJ5NZFQne5"
-        },
-        {
-          "trackId": "2yKuoDNAMSiagR8g1UGQsJ",
-          "trackName": "Boonika Bate Doba (Grandmana Beat The Drum-A)",
-          "artists": "Zdob si Zdub",
-          "albumName": "Boonika Bate Doba",
-          "plays": 1216967,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/2yKuoDNAMSiagR8g1UGQsJ"
-        },
-        {
-          "trackId": "4rqqHVbVuCJjiR6uyz9izw",
-          "trackName": "Boonika Bate Doba (Grandmana Beat The Drum-A)",
-          "artists": "Zdob si Zdub",
-          "albumName": "Boonika Bate Doba",
-          "plays": 136678,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/4rqqHVbVuCJjiR6uyz9izw"
-        },
-        {
-          "trackId": "6AhqzGZ491aW1iGori6s9z",
-          "trackName": "Boonika Bate Doba - Shantel DUB",
-          "artists": "Shantel, Zdob si Zdub",
-          "albumName": "Shantology // The Bucovina Club Years",
-          "plays": 51826,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/6AhqzGZ491aW1iGori6s9z"
-        }
-      ]
-    },
-    {
-      "rank": 11,
       "year": 2015,
       "song": "I Want Your Love",
       "artist": "Eduard Romanyuta",
-      "plays": 2303050,
-      "previousPlays": 1150904,
-      "newPlays": 1152146,
-      "growthPercent": 100.1,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 3190618,
+      "previousPlays": 2303050,
+      "newPlays": 887568,
+      "growthPercent": 38.5,
+      "recentDays": 144,
+      "recentPlaysPerDay": 6164,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 2,
       "topTrackId": "6NcwcSoymgNM126a6WwbZX",
@@ -683,6 +628,10 @@
         {
           "date": "2026-06-09",
           "total": 2303050
+        },
+        {
+          "date": "2026-10-31",
+          "total": 3190618
         }
       ],
       "versions": [
@@ -691,7 +640,7 @@
           "trackName": "I Want Your Love",
           "artists": "Eduard Romanyuta",
           "albumName": "I Want Your Love",
-          "plays": 1151525,
+          "plays": 1595309,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/6NcwcSoymgNM126a6WwbZX"
         },
@@ -700,9 +649,140 @@
           "trackName": "I want your love",
           "artists": "Eduard Romanyuta",
           "albumName": "I want your love",
-          "plays": 1151525,
-          "source": "search",
+          "plays": 1595309,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/438rvMKzU8eMENdVxCI30n"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "year": 2016,
+      "song": "Falling Stars",
+      "artist": "Lidia Isac",
+      "plays": 3030104,
+      "previousPlays": 2999806,
+      "newPlays": 30298,
+      "growthPercent": 1.0,
+      "recentDays": 144,
+      "recentPlaysPerDay": 210,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
+      "recentSource": "snapshot",
+      "versionCount": 2,
+      "topTrackId": "7gb3w8xWgszx40JIz0R0NN",
+      "topTrackName": "Falling Stars - Radio Edit",
+      "spotifyUrl": "https://open.spotify.com/track/7gb3w8xWgszx40JIz0R0NN",
+      "history": [
+        {
+          "date": "2026-06-06",
+          "total": 1499508
+        },
+        {
+          "date": "2026-06-09",
+          "total": 2999806
+        },
+        {
+          "date": "2026-10-31",
+          "total": 3030104
+        }
+      ],
+      "versions": [
+        {
+          "trackId": "7gb3w8xWgszx40JIz0R0NN",
+          "trackName": "Falling Stars - Radio Edit",
+          "artists": "Lidia Isac",
+          "albumName": "Falling Stars",
+          "plays": 1515052,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/7gb3w8xWgszx40JIz0R0NN"
+        },
+        {
+          "trackId": "10YxDfkTgUDAWPlRQkUpOi",
+          "trackName": "Falling Stars - Radio Edit",
+          "artists": "Lidia Isac",
+          "albumName": "Falling Stars (Radio Edit)",
+          "plays": 1515052,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/10YxDfkTgUDAWPlRQkUpOi"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "year": 2005,
+      "song": "Boonika Bate Doba",
+      "artist": "Zdob si Zdub",
+      "plays": 2784036,
+      "previousPlays": 2622438,
+      "newPlays": 161598,
+      "growthPercent": 6.2,
+      "recentDays": 144,
+      "recentPlaysPerDay": 1122,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
+      "recentSource": "snapshot",
+      "versionCount": 5,
+      "topTrackId": "4KIoPhF6nBKgLJ5NZFQne5",
+      "topTrackName": "Boonika Bate Doba",
+      "spotifyUrl": "https://open.spotify.com/track/4KIoPhF6nBKgLJ5NZFQne5",
+      "history": [
+        {
+          "date": "2026-06-06",
+          "total": 1403624
+        },
+        {
+          "date": "2026-06-09",
+          "total": 2622438
+        },
+        {
+          "date": "2026-10-31",
+          "total": 2784036
+        }
+      ],
+      "versions": [
+        {
+          "trackId": "4KIoPhF6nBKgLJ5NZFQne5",
+          "trackName": "Boonika Bate Doba",
+          "artists": "Zdob si Zdub",
+          "albumName": "Ethnomecanica",
+          "plays": 1291259,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/4KIoPhF6nBKgLJ5NZFQne5"
+        },
+        {
+          "trackId": "2yKuoDNAMSiagR8g1UGQsJ",
+          "trackName": "Boonika Bate Doba (Grandmana Beat The Drum-A)",
+          "artists": "Zdob si Zdub",
+          "albumName": "Boonika Bate Doba",
+          "plays": 1291259,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/2yKuoDNAMSiagR8g1UGQsJ"
+        },
+        {
+          "trackId": "4rqqHVbVuCJjiR6uyz9izw",
+          "trackName": "Boonika Bate Doba (Grandmana Beat The Drum-A)",
+          "artists": "Zdob si Zdub",
+          "albumName": "Boonika Bate Doba",
+          "plays": 140686,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/4rqqHVbVuCJjiR6uyz9izw"
+        },
+        {
+          "trackId": "6AhqzGZ491aW1iGori6s9z",
+          "trackName": "Boonika Bate Doba - Shantel DUB",
+          "artists": "Shantel, Zdob si Zdub",
+          "albumName": "Shantology // The Bucovina Club Years",
+          "plays": 52970,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/6AhqzGZ491aW1iGori6s9z"
+        },
+        {
+          "trackId": "6TTi61RUDw1YmNYch3L7Dz",
+          "trackName": "Boonika Bate Doba (Grandmana Beat The Drum-A)",
+          "artists": "Zdob si Zdub",
+          "albumName": "Boonika Bate Doba",
+          "plays": 7862,
+          "source": "search",
+          "spotifyUrl": "https://open.spotify.com/track/6TTi61RUDw1YmNYch3L7Dz"
         }
       ]
     },
@@ -711,15 +791,15 @@
       "year": 2019,
       "song": "Stay",
       "artist": "Anna Odobescu",
-      "plays": 1903558,
-      "previousPlays": 1891662,
-      "newPlays": 11896,
-      "growthPercent": 0.6,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 1919800,
+      "previousPlays": 1903558,
+      "newPlays": 16242,
+      "growthPercent": 0.9,
+      "recentDays": 144,
+      "recentPlaysPerDay": 113,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
-      "versionCount": 4,
+      "versionCount": 5,
       "topTrackId": "78iJjN4KTvervCOGL5hZ6R",
       "topTrackName": "Stay",
       "spotifyUrl": "https://open.spotify.com/track/78iJjN4KTvervCOGL5hZ6R",
@@ -731,6 +811,10 @@
         {
           "date": "2026-06-09",
           "total": 1903558
+        },
+        {
+          "date": "2026-10-31",
+          "total": 1919800
         }
       ],
       "versions": [
@@ -739,7 +823,7 @@
           "trackName": "Stay",
           "artists": "Anna Odobescu",
           "albumName": "Stay",
-          "plays": 1864062,
+          "plays": 1876022,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/78iJjN4KTvervCOGL5hZ6R"
         },
@@ -748,7 +832,7 @@
           "trackName": "Stay - Esc Mix",
           "artists": "Anna Odobescu",
           "albumName": "Stay (Esc Mix)",
-          "plays": 15480,
+          "plays": 15710,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/7Bkr9cBggsfLYcXQ0deWQQ"
         },
@@ -757,7 +841,7 @@
           "trackName": "Stay - Esc Instrumental Mix",
           "artists": "Anna Odobescu",
           "albumName": "Stay (Esc Mix)",
-          "plays": 12482,
+          "plays": 12578,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/0OE3g8ghornJOsRHnPtfxf"
         },
@@ -766,9 +850,18 @@
           "trackName": "Stay - Alternative Edit",
           "artists": "Anna Odobescu",
           "albumName": "Stay",
-          "plays": 11534,
-          "source": "search",
+          "plays": 11639,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/0esybuJ57XDrB7QI2PsWqb"
+        },
+        {
+          "trackId": "1FQOhtQanzSodsfO515E9X",
+          "trackName": "Stay - Instrumental Version",
+          "artists": "Anna Odobescu",
+          "albumName": "Stay",
+          "plays": 3851,
+          "source": "search",
+          "spotifyUrl": "https://open.spotify.com/track/1FQOhtQanzSodsfO515E9X"
         }
       ]
     },
@@ -777,13 +870,13 @@
       "year": 2020,
       "song": "Prison",
       "artist": "Natalia Gordienko",
-      "plays": 1350722,
-      "previousPlays": 1349840,
-      "newPlays": 882,
-      "growthPercent": 0.1,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 1379999,
+      "previousPlays": 1350722,
+      "newPlays": 29277,
+      "growthPercent": 2.2,
+      "recentDays": 144,
+      "recentPlaysPerDay": 203,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 2,
       "topTrackId": "0Qnle48BiFwB0s4ppd93P2",
@@ -797,6 +890,10 @@
         {
           "date": "2026-06-09",
           "total": 1350722
+        },
+        {
+          "date": "2026-10-31",
+          "total": 1379999
         }
       ],
       "versions": [
@@ -805,7 +902,7 @@
           "trackName": "Prison",
           "artists": "Natalia Gordienko",
           "albumName": "Prison",
-          "plays": 1345667,
+          "plays": 1374899,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/0Qnle48BiFwB0s4ppd93P2"
         },
@@ -814,7 +911,7 @@
           "trackName": "Prison - Eurovision 2020 / Moldova / Karaoke Version",
           "artists": "Natalia Gordienko",
           "albumName": "Eurovision 2020 - A Tribute To The Artists And Songs - Featuring The Songs From All 41 Countries (Karaoke Version)",
-          "plays": 5055,
+          "plays": 5100,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/1qlktO6Z0usjlDUGOlwJet"
         }
@@ -822,121 +919,16 @@
     },
     {
       "rank": 14,
-      "year": 2011,
-      "song": "So Lucky",
-      "artist": "Zdob si Zdub",
-      "plays": 1112176,
-      "previousPlays": 561118,
-      "newPlays": 551058,
-      "growthPercent": 98.2,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
-      "recentSource": "snapshot",
-      "versionCount": 4,
-      "topTrackId": "5bKbuYEBKHd3TOuOY2c76f",
-      "topTrackName": "So Lucky",
-      "spotifyUrl": "https://open.spotify.com/track/5bKbuYEBKHd3TOuOY2c76f",
-      "history": [
-        {
-          "date": "2026-06-06",
-          "total": 561118
-        },
-        {
-          "date": "2026-06-09",
-          "total": 1112176
-        }
-      ],
-      "versions": [
-        {
-          "trackId": "5bKbuYEBKHd3TOuOY2c76f",
-          "trackName": "So Lucky",
-          "artists": "Zdob si Zdub",
-          "albumName": "Basta Mafia!",
-          "plays": 550639,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/5bKbuYEBKHd3TOuOY2c76f"
-        },
-        {
-          "trackId": "4AUdbSiP8eGcJK75p4bIDK",
-          "trackName": "So Lucky",
-          "artists": "Zdob si Zdub",
-          "albumName": "Basta Mafia!",
-          "plays": 550639,
-          "source": "search",
-          "spotifyUrl": "https://open.spotify.com/track/4AUdbSiP8eGcJK75p4bIDK"
-        },
-        {
-          "trackId": "5UuYE7S7IJuG1CsaQhVlRJ",
-          "trackName": "So Lucky - Extended Version",
-          "artists": "Zdob si Zdub",
-          "albumName": "Running",
-          "plays": 6442,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/5UuYE7S7IJuG1CsaQhVlRJ"
-        },
-        {
-          "trackId": "0hgJQjNbOTL9uM55AaDvDM",
-          "trackName": "So Lucky - Acoustic Version",
-          "artists": "Zdob si Zdub",
-          "albumName": "Running",
-          "plays": 4456,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/0hgJQjNbOTL9uM55AaDvDM"
-        }
-      ]
-    },
-    {
-      "rank": 15,
-      "year": 2012,
-      "song": "Lautar",
-      "artist": "Pasha Parfeni",
-      "plays": 957000,
-      "previousPlays": 956546,
-      "newPlays": 454,
-      "growthPercent": 0.0,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
-      "recentSource": "snapshot",
-      "versionCount": 1,
-      "topTrackId": "7cpOKiJAbRLvmMJdzckE3Y",
-      "topTrackName": "Lautar",
-      "spotifyUrl": "https://open.spotify.com/track/7cpOKiJAbRLvmMJdzckE3Y",
-      "history": [
-        {
-          "date": "2026-06-06",
-          "total": 956546
-        },
-        {
-          "date": "2026-06-09",
-          "total": 957000
-        }
-      ],
-      "versions": [
-        {
-          "trackId": "7cpOKiJAbRLvmMJdzckE3Y",
-          "trackName": "Lautar",
-          "artists": "Pasha Parfeni",
-          "albumName": "Lautar",
-          "plays": 957000,
-          "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/7cpOKiJAbRLvmMJdzckE3Y"
-        }
-      ]
-    },
-    {
-      "rank": 16,
       "year": 2013,
       "song": "O Mie",
       "artist": "Aliona Moon",
-      "plays": 548453,
-      "previousPlays": 547316,
-      "newPlays": 1137,
-      "growthPercent": 0.2,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 1203656,
+      "previousPlays": 548453,
+      "newPlays": 655203,
+      "growthPercent": 119.5,
+      "recentDays": 144,
+      "recentPlaysPerDay": 4550,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 1,
       "topTrackId": "2OQ8r8PyqHRQgP5rZoNk5K",
@@ -950,6 +942,10 @@
         {
           "date": "2026-06-09",
           "total": 548453
+        },
+        {
+          "date": "2026-10-31",
+          "total": 1203656
         }
       ],
       "versions": [
@@ -958,72 +954,137 @@
           "trackName": "O Mie",
           "artists": "Aliona Moon",
           "albumName": "O Mie",
-          "plays": 548453,
+          "plays": 1203656,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/2OQ8r8PyqHRQgP5rZoNk5K"
         }
       ]
     },
     {
-      "rank": 17,
-      "year": 2014,
-      "song": "Wild Soul",
-      "artist": "Cristina Scarlat",
-      "plays": 472762,
-      "previousPlays": 472762,
-      "newPlays": 0,
-      "growthPercent": 0.0,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "rank": 15,
+      "year": 2011,
+      "song": "So Lucky",
+      "artist": "Zdob si Zdub",
+      "plays": 1141739,
+      "previousPlays": 1112176,
+      "newPlays": 29563,
+      "growthPercent": 2.7,
+      "recentDays": 144,
+      "recentPlaysPerDay": 205,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
-      "versionCount": 2,
-      "topTrackId": "5jGzOHFqzgyhxdFWZRxRaR",
-      "topTrackName": "Wild Soul - Eurovision 2014 - Moldova",
-      "spotifyUrl": "https://open.spotify.com/track/5jGzOHFqzgyhxdFWZRxRaR",
+      "versionCount": 4,
+      "topTrackId": "5bKbuYEBKHd3TOuOY2c76f",
+      "topTrackName": "So Lucky",
+      "spotifyUrl": "https://open.spotify.com/track/5bKbuYEBKHd3TOuOY2c76f",
       "history": [
         {
           "date": "2026-06-06",
-          "total": 472762
+          "total": 561118
         },
         {
           "date": "2026-06-09",
-          "total": 472762
+          "total": 1112176
+        },
+        {
+          "date": "2026-10-31",
+          "total": 1141739
         }
       ],
       "versions": [
         {
-          "trackId": "5jGzOHFqzgyhxdFWZRxRaR",
-          "trackName": "Wild Soul - Eurovision 2014 - Moldova",
-          "artists": "Cristina Scarlat",
-          "albumName": "Eurovision Song Contest 2014 Copenhagen",
-          "plays": 472762,
+          "trackId": "5bKbuYEBKHd3TOuOY2c76f",
+          "trackName": "So Lucky",
+          "artists": "Zdob si Zdub",
+          "albumName": "Basta Mafia!",
+          "plays": 565259,
           "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/5jGzOHFqzgyhxdFWZRxRaR"
+          "spotifyUrl": "https://open.spotify.com/track/5bKbuYEBKHd3TOuOY2c76f"
         },
         {
-          "trackId": "0fOIWC8ujzgfggYYNOozbb",
-          "trackName": "Wild Soul",
-          "artists": "Cristina Scarlat",
-          "albumName": "Wild Soul",
-          "plays": 0,
+          "trackId": "4AUdbSiP8eGcJK75p4bIDK",
+          "trackName": "So Lucky",
+          "artists": "Zdob si Zdub",
+          "albumName": "Basta Mafia!",
+          "plays": 565259,
           "source": "playlist",
-          "spotifyUrl": "https://open.spotify.com/track/0fOIWC8ujzgfggYYNOozbb"
+          "spotifyUrl": "https://open.spotify.com/track/4AUdbSiP8eGcJK75p4bIDK"
+        },
+        {
+          "trackId": "5UuYE7S7IJuG1CsaQhVlRJ",
+          "trackName": "So Lucky - Extended Version",
+          "artists": "Zdob si Zdub",
+          "albumName": "Running",
+          "plays": 6732,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/5UuYE7S7IJuG1CsaQhVlRJ"
+        },
+        {
+          "trackId": "0hgJQjNbOTL9uM55AaDvDM",
+          "trackName": "So Lucky - Acoustic Version",
+          "artists": "Zdob si Zdub",
+          "albumName": "Running",
+          "plays": 4489,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/0hgJQjNbOTL9uM55AaDvDM"
         }
       ]
     },
     {
-      "rank": 18,
+      "rank": 16,
+      "year": 2012,
+      "song": "Lautar",
+      "artist": "Pasha Parfeni",
+      "plays": 974631,
+      "previousPlays": 957000,
+      "newPlays": 17631,
+      "growthPercent": 1.8,
+      "recentDays": 144,
+      "recentPlaysPerDay": 122,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
+      "recentSource": "snapshot",
+      "versionCount": 1,
+      "topTrackId": "7cpOKiJAbRLvmMJdzckE3Y",
+      "topTrackName": "Lautar",
+      "spotifyUrl": "https://open.spotify.com/track/7cpOKiJAbRLvmMJdzckE3Y",
+      "history": [
+        {
+          "date": "2026-06-06",
+          "total": 956546
+        },
+        {
+          "date": "2026-06-09",
+          "total": 957000
+        },
+        {
+          "date": "2026-10-31",
+          "total": 974631
+        }
+      ],
+      "versions": [
+        {
+          "trackId": "7cpOKiJAbRLvmMJdzckE3Y",
+          "trackName": "Lautar",
+          "artists": "Pasha Parfeni",
+          "albumName": "Lautar",
+          "plays": 974631,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/7cpOKiJAbRLvmMJdzckE3Y"
+        }
+      ]
+    },
+    {
+      "rank": 17,
       "year": 2006,
       "song": "Loca",
       "artist": "Arsenium, Natalia Gordienko, Connect-R",
-      "plays": 387271,
-      "previousPlays": 197425,
-      "newPlays": 189846,
-      "growthPercent": 96.2,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 403129,
+      "previousPlays": 387271,
+      "newPlays": 15858,
+      "growthPercent": 4.1,
+      "recentDays": 144,
+      "recentPlaysPerDay": 110,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 3,
       "topTrackId": "5slyPLlX1jCdqUF35K7HZm",
@@ -1037,6 +1098,10 @@
         {
           "date": "2026-06-09",
           "total": 387271
+        },
+        {
+          "date": "2026-10-31",
+          "total": 403129
         }
       ],
       "versions": [
@@ -1045,7 +1110,7 @@
           "trackName": "Loca",
           "artists": "Arsenium, Natalia Gordienko, Connect-R",
           "albumName": "The 33rd Element",
-          "plays": 189654,
+          "plays": 197460,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/5slyPLlX1jCdqUF35K7HZm"
         },
@@ -1054,8 +1119,8 @@
           "trackName": "Loca (Crazy) - Eurovision Version",
           "artists": "Arsenium, Natalia Gordienko, Connect-R",
           "albumName": "The 33rd Element",
-          "plays": 189654,
-          "source": "search",
+          "plays": 197460,
+          "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/3Yp9ODeKQRa5dwdov1GSNJ"
         },
         {
@@ -1063,24 +1128,24 @@
           "trackName": "Loca (Crazy) - Soft Remix",
           "artists": "Arsenium, Natalia Gordienko, Connect-R",
           "albumName": "The 33rd Element",
-          "plays": 7963,
+          "plays": 8209,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/0MbUgLGcN7h3n9Mo6wvXzs"
         }
       ]
     },
     {
-      "rank": 19,
+      "rank": 18,
       "year": 2007,
       "song": "Fight",
       "artist": "Natalia Barbu",
-      "plays": 119898,
-      "previousPlays": 119495,
-      "newPlays": 403,
-      "growthPercent": 0.3,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "plays": 265138,
+      "previousPlays": 119898,
+      "newPlays": 145240,
+      "growthPercent": 121.1,
+      "recentDays": 144,
+      "recentPlaysPerDay": 1009,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 2,
       "topTrackId": "00ZMcosmawMNp7SWdpvjQX",
@@ -1094,6 +1159,10 @@
         {
           "date": "2026-06-09",
           "total": 119898
+        },
+        {
+          "date": "2026-10-31",
+          "total": 265138
         }
       ],
       "versions": [
@@ -1102,7 +1171,7 @@
           "trackName": "Fight",
           "artists": "Natalia Barbu",
           "albumName": "Interpreta Natalia Barbu",
-          "plays": 112955,
+          "plays": 132569,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/00ZMcosmawMNp7SWdpvjQX"
         },
@@ -1111,26 +1180,26 @@
           "trackName": "Fight (Moldova)",
           "artists": "Natalia Barbu",
           "albumName": "Eurovision Song Contest 2007",
-          "plays": 6943,
+          "plays": 132569,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/1bsskP02s5JOOXYOU2iXES"
         }
       ]
     },
     {
-      "rank": 20,
+      "rank": 19,
       "year": 2009,
       "song": "Hora din Moldova",
       "artist": "Nelly Ciobanu",
-      "plays": 61298,
+      "plays": 217766,
       "previousPlays": 61298,
-      "newPlays": 0,
-      "growthPercent": 0.0,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "newPlays": 156468,
+      "growthPercent": 255.3,
+      "recentDays": 144,
+      "recentPlaysPerDay": 1087,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
-      "versionCount": 1,
+      "versionCount": 2,
       "topTrackId": "6Jg3xcScQ00BiVMKM915yL",
       "topTrackName": "Hora Din Moldova",
       "spotifyUrl": "https://open.spotify.com/track/6Jg3xcScQ00BiVMKM915yL",
@@ -1142,6 +1211,10 @@
         {
           "date": "2026-06-09",
           "total": 61298
+        },
+        {
+          "date": "2026-10-31",
+          "total": 217766
         }
       ],
       "versions": [
@@ -1150,9 +1223,70 @@
           "trackName": "Hora Din Moldova",
           "artists": "Nelly Ciobanu",
           "albumName": "Mare Petrecere",
-          "plays": 61298,
+          "plays": 108883,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/6Jg3xcScQ00BiVMKM915yL"
+        },
+        {
+          "trackId": "28qO1xTFmNItRDC4T7MEAQ",
+          "trackName": "Hora Din Moldova",
+          "artists": "Nelly Ciobanu",
+          "albumName": "Hora Din Moldova",
+          "plays": 108883,
+          "source": "search",
+          "spotifyUrl": "https://open.spotify.com/track/28qO1xTFmNItRDC4T7MEAQ"
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "year": 2014,
+      "song": "Wild Soul",
+      "artist": "Cristina Scarlat",
+      "plays": 1931,
+      "previousPlays": 472762,
+      "newPlays": -470831,
+      "growthPercent": -99.6,
+      "recentDays": 144,
+      "recentPlaysPerDay": -3270,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
+      "recentSource": "snapshot",
+      "versionCount": 2,
+      "topTrackId": "0fOIWC8ujzgfggYYNOozbb",
+      "topTrackName": "Wild Soul",
+      "spotifyUrl": "https://open.spotify.com/track/0fOIWC8ujzgfggYYNOozbb",
+      "history": [
+        {
+          "date": "2026-06-06",
+          "total": 472762
+        },
+        {
+          "date": "2026-06-09",
+          "total": 472762
+        },
+        {
+          "date": "2026-10-31",
+          "total": 1931
+        }
+      ],
+      "versions": [
+        {
+          "trackId": "0fOIWC8ujzgfggYYNOozbb",
+          "trackName": "Wild Soul",
+          "artists": "Cristina Scarlat",
+          "albumName": "Wild Soul",
+          "plays": 1931,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/0fOIWC8ujzgfggYYNOozbb"
+        },
+        {
+          "trackId": "5jGzOHFqzgyhxdFWZRxRaR",
+          "trackName": "Wild Soul - Eurovision 2014 - Moldova",
+          "artists": "Cristina Scarlat",
+          "albumName": "Eurovision Song Contest 2014 Copenhagen",
+          "plays": 0,
+          "source": "playlist",
+          "spotifyUrl": "https://open.spotify.com/track/5jGzOHFqzgyhxdFWZRxRaR"
         }
       ]
     },
@@ -1161,13 +1295,13 @@
       "year": 2008,
       "song": "A Century of Love",
       "artist": "Geta Burlacu",
-      "plays": 7475,
+      "plays": 0,
       "previousPlays": 7475,
-      "newPlays": 0,
-      "growthPercent": 0.0,
-      "recentDays": 3,
-      "recentPlaysPerDay": null,
-      "recentPeriod": "2026-06-06 - 2026-06-09",
+      "newPlays": -7475,
+      "growthPercent": -100.0,
+      "recentDays": 144,
+      "recentPlaysPerDay": -52,
+      "recentPeriod": "2026-06-09 - 2026-10-31",
       "recentSource": "snapshot",
       "versionCount": 1,
       "topTrackId": "4HspYkcC8vEQJMXp2PsGik",
@@ -1181,6 +1315,10 @@
         {
           "date": "2026-06-09",
           "total": 7475
+        },
+        {
+          "date": "2026-10-31",
+          "total": 0
         }
       ],
       "versions": [
@@ -1189,7 +1327,7 @@
           "trackName": "A Century Of Love - Moldova",
           "artists": "Geta Burlacu",
           "albumName": "Eurovision Song Contest 2008",
-          "plays": 7475,
+          "plays": 0,
           "source": "playlist",
           "spotifyUrl": "https://open.spotify.com/track/4HspYkcC8vEQJMXp2PsGik"
         }
