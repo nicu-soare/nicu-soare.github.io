@@ -12,6 +12,7 @@ translationKey: about
   Câteva lucruri despre mine:
 </p>
 <ul>
+  <li>Sunt inginer software și lucrez ca tech lead.</li>
   <li>Sunt interesat de securitatea informațională și militez împotriva votului electronic.</li>
   <li>Susțin activ Moldova în diverse moduri.</li>
   <li>Îmi place o varietate de genuri muzicale.</li>
