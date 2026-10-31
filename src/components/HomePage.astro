@@ -82,9 +82,11 @@ const formatDate = (date: Date) =>
   >
     <section id="hero" class="pt-6 sm:pt-10">
       <div class="flex flex-wrap items-end justify-between gap-x-4">
-        <div class="basis-full pb-6 sm:flex-1 sm:basis-auto">
+        <div
+          class="basis-full pb-6 sm:max-w-[27rem] sm:flex-1 sm:basis-auto md:max-w-[29rem]"
+        >
           <h1
-            class="font-display text-4xl leading-[1.05] font-extrabold sm:text-6xl"
+            class="font-display neon text-4xl leading-[1.05] font-extrabold sm:text-5xl md:text-6xl"
           >
             {t.home.tagline}
           </h1>
@@ -123,7 +125,11 @@ const formatDate = (date: Date) =>
           <HeroSun />
         </div>
       </div>
-      <div class="wave-rule" role="presentation"></div>
+      <div
+        class="bg-sea h-0.5 shadow-[0_0_6px_var(--glow)]"
+        role="presentation"
+      >
+      </div>
     </section>
 
     {
@@ -147,14 +153,14 @@ const formatDate = (date: Date) =>
 
     {
       recentEntries.length > 0 && (
-        <section id="recent-posts" class="pt-10 pb-6">
+        <section id="recent-posts" class="pt-14 pb-6">
           <h2 class="font-display text-2xl font-bold">{t.home.recentPosts}</h2>
           <ul>
             {recentEntries.slice(0, postsConfig.perIndex).map(item => (
               <li class="my-7">
                 <a
                   href={item.href}
-                  class="font-display decoration-sun hover:text-accent inline-block text-xl leading-snug font-bold decoration-wavy decoration-2 underline-offset-4 hover:underline focus-visible:no-underline"
+                  class="font-display text-sea hover:text-accent inline-block text-xl leading-snug font-bold decoration-wavy decoration-2 underline-offset-4 hover:underline focus-visible:no-underline"
                 >
                   <h3>{item.title}</h3>
                 </a>
@@ -175,7 +181,7 @@ const formatDate = (date: Date) =>
     <div class="my-10 text-center">
       <LinkButton
         href={getRelativeLocaleUrl(locale, "posts")}
-        class="bg-sun font-display rounded-full px-5 py-2.5 font-semibold text-[#1d2b3a] shadow-[0_2px_0_0_var(--foreground)] transition-transform hover:translate-y-px hover:text-[#1d2b3a] hover:shadow-[0_1px_0_0_var(--foreground)]"
+        class="bg-accent text-accent-foreground font-display hover:text-accent-foreground rounded-full px-5 py-2.5 font-semibold shadow-[0_0_16px_var(--glow)] transition-transform hover:translate-y-px"
       >
         {t.home.allPosts}
         <IconArrowRight class="inline-block rtl:-rotate-180" />

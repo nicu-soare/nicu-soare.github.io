@@ -25,14 +25,20 @@ type Entry = {
   }>;
 };
 
-const { entries, pageTitle } = Astro.props as { entries: Entry[]; pageTitle: string };
+const { entries, pageTitle } = Astro.props as {
+  entries: Entry[];
+  pageTitle: string;
+};
 const locale = Astro.currentLocale ?? "ro";
 const isRomanian = locale === "ro";
 
-const formatNumber = (value: number) => new Intl.NumberFormat(locale).format(value);
+const formatNumber = (value: number) =>
+  new Intl.NumberFormat(locale).format(value);
 const formatRecentRate = (value: number | null) =>
-  value === null || value <= 0 ? "—" : `+${formatNumber(value)}/${isRomanian ? "zi" : "day"}`;
-const years = entries.map((entry) => entry.year);
+  value === null || value <= 0
+    ? "—"
+    : `+${formatNumber(value)}/${isRomanian ? "zi" : "day"}`;
+const years = entries.map(entry => entry.year);
 const minYear = Math.min(...years);
 const maxYear = Math.max(...years);
 const missingYears: number[] = [];
@@ -45,23 +51,33 @@ for (let year = minYear; year <= maxYear; year += 1) {
   <div class="tool-header">
     <p class="year-range">
       {isRomanian ? "Ani incluși" : "Included years"}: {minYear}-{maxYear}
-      {missingYears.length > 0 &&
-        (isRomanian ? `, fără ${missingYears.join(", ")}` : `, excluding ${missingYears.join(", ")}`)}
-      {isRomanian ? " (anul când Moldova n-a participat)" : " (years when Moldova did not participate)"}
+      {
+        missingYears.length > 0 &&
+          (isRomanian
+            ? `, fără ${missingYears.join(", ")}`
+            : `, excluding ${missingYears.join(", ")}`)
+      }
+      {
+        isRomanian
+          ? " (anul când Moldova n-a participat)"
+          : " (years when Moldova did not participate)"
+      }
     </p>
-      <button
-        type="button"
-        class="fullscreen-toggle"
-        data-fullscreen-toggle
-        aria-pressed="false"
-      >
-        {isRomanian ? "Ecran complet" : "Full screen"}
-      </button>
+    <button
+      type="button"
+      class="fullscreen-toggle"
+      data-fullscreen-toggle
+      aria-pressed="false"
+    >
+      {isRomanian ? "Ecran complet" : "Full screen"}
+    </button>
   </div>
 
   <div class="table-shell" data-table-shell>
     <div class="fullscreen-heading">
-      <p class="fullscreen-kicker">{isRomanian ? "Moldova la Eurovision" : "Moldova at Eurovision"}</p>
+      <p class="fullscreen-kicker">
+        {isRomanian ? "Moldova la Eurovision" : "Moldova at Eurovision"}
+      </p>
       <h2 class="fullscreen-title">{pageTitle}</h2>
     </div>
 
@@ -79,18 +95,42 @@ for (let year = minYear; year <= maxYear; year += 1) {
       <thead>
         <tr>
           <th><button type="button" data-sort="rank">#</button></th>
-          <th><button type="button" data-sort="song">{isRomanian ? "Piesă" : "Song"}</button></th>
-          <th><button type="button" data-sort="artist">{isRomanian ? "Artist" : "Artist"}</button></th>
-          <th><button type="button" data-sort="year">{isRomanian ? "An" : "Year"}</button></th>
-          <th><button type="button" data-sort="plays">{isRomanian ? "Ascultări" : "Plays"}</button></th>
-          <th><button type="button" data-sort="recentPlaysPerDay">{isRomanian ? "Ritm recent" : "Recent rate"}</button></th>
-          <th><button type="button" data-sort="versionCount">{isRomanian ? "Versiuni" : "Versions"}</button></th>
+          <th
+            ><button type="button" data-sort="song"
+              >{isRomanian ? "Piesă" : "Song"}</button
+            ></th
+          >
+          <th
+            ><button type="button" data-sort="artist"
+              >{isRomanian ? "Artist" : "Artist"}</button
+            ></th
+          >
+          <th
+            ><button type="button" data-sort="year"
+              >{isRomanian ? "An" : "Year"}</button
+            ></th
+          >
+          <th
+            ><button type="button" data-sort="plays"
+              >{isRomanian ? "Ascultări" : "Plays"}</button
+            ></th
+          >
+          <th
+            ><button type="button" data-sort="recentPlaysPerDay"
+              >{isRomanian ? "Ritm recent" : "Recent rate"}</button
+            ></th
+          >
+          <th
+            ><button type="button" data-sort="versionCount"
+              >{isRomanian ? "Versiuni" : "Versions"}</button
+            ></th
+          >
           <th>Spotify</th>
         </tr>
       </thead>
       <tbody>
         {
-          entries.map((entry) => (
+          entries.map(entry => (
             <tr
               data-rank={entry.rank}
               data-song={entry.song.toLowerCase()}
@@ -101,20 +141,58 @@ for (let year = minYear; year <= maxYear; year += 1) {
               data-version-count={entry.versionCount}
               data-search={`${entry.song} ${entry.artist} ${entry.year}`.toLowerCase()}
             >
-              <td class="rank" data-label="#">{entry.rank}</td>
-              <td class="song" data-label={isRomanian ? "Piesă" : "Song"}>{entry.song}</td>
-              <td data-label={isRomanian ? "Artist" : "Artist"}>{entry.artist}</td>
-              <td class="numeric" data-label={isRomanian ? "An" : "Year"}>{entry.year}</td>
-              <td class="numeric strong" data-label={isRomanian ? "Ascultări" : "Plays"}>{formatNumber(entry.plays)}</td>
-              <td class:list={['numeric', entry.recentPlaysPerDay !== null && entry.recentPlaysPerDay > 0 && 'positive']} data-label={isRomanian ? "Ritm recent" : "Recent rate"}>{formatRecentRate(entry.recentPlaysPerDay)}</td>
+              <td class="rank" data-label="#">
+                {entry.rank}
+              </td>
+              <td class="song" data-label={isRomanian ? "Piesă" : "Song"}>
+                {entry.song}
+              </td>
+              <td data-label={isRomanian ? "Artist" : "Artist"}>
+                {entry.artist}
+              </td>
+              <td class="numeric" data-label={isRomanian ? "An" : "Year"}>
+                {entry.year}
+              </td>
+              <td
+                class="numeric strong"
+                data-label={isRomanian ? "Ascultări" : "Plays"}
+              >
+                {formatNumber(entry.plays)}
+              </td>
+              <td
+                class:list={[
+                  "numeric",
+                  entry.recentPlaysPerDay !== null &&
+                    entry.recentPlaysPerDay > 0 &&
+                    "positive",
+                ]}
+                data-label={isRomanian ? "Ritm recent" : "Recent rate"}
+              >
+                {formatRecentRate(entry.recentPlaysPerDay)}
+              </td>
               <td data-label={isRomanian ? "Versiuni" : "Versions"}>
                 <details class="versions">
-                  <summary>{entry.versionCount} {entry.versionCount === 1 ? (isRomanian ? 'versiune' : 'version') : (isRomanian ? 'versiuni' : 'versions')}</summary>
+                  <summary>
+                    {entry.versionCount}{" "}
+                    {entry.versionCount === 1
+                      ? isRomanian
+                        ? "versiune"
+                        : "version"
+                      : isRomanian
+                        ? "versiuni"
+                        : "versions"}
+                  </summary>
                   <ol>
-                    {entry.versions.map((version) => (
+                    {entry.versions.map(version => (
                       <li>
                         <div>
-                          <a href={version.spotifyUrl} target="_blank" rel="noreferrer">{version.trackName}</a>
+                          <a
+                            href={version.spotifyUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {version.trackName}
+                          </a>
                           <span>{version.albumName}</span>
                         </div>
                         <strong>{formatNumber(version.plays)}</strong>
@@ -124,7 +202,9 @@ for (let year = minYear; year <= maxYear; year += 1) {
                 </details>
               </td>
               <td data-label="Spotify">
-                <a href={entry.spotifyUrl} target="_blank" rel="noreferrer">{isRomanian ? "Ascultă" : "Listen"}</a>
+                <a href={entry.spotifyUrl} target="_blank" rel="noreferrer">
+                  {isRomanian ? "Ascultă" : "Listen"}
+                </a>
               </td>
             </tr>
           ))
@@ -135,71 +215,87 @@ for (let year = minYear; year <= maxYear; year += 1) {
 </section>
 
 <script>
-  const table = document.querySelector('[data-table]');
-  const tableShell = document.querySelector('[data-table-shell]');
-  const fullscreenToggle = document.querySelector('[data-fullscreen-toggle]');
+  const table = document.querySelector("[data-table]");
+  const tableShell = document.querySelector("[data-table-shell]");
+  const fullscreenToggle = document.querySelector("[data-fullscreen-toggle]");
   const body = document.body;
-  const locale = document.documentElement.lang.startsWith('ro') ? 'ro' : 'en';
-  const fullscreenLabel = locale === 'ro' ? 'Ecran complet' : 'Full screen';
-  const exitFullscreenLabel = locale === 'ro' ? 'Ieși din ecran complet' : 'Exit full screen';
+  const locale = document.documentElement.lang.startsWith("ro") ? "ro" : "en";
+  const fullscreenLabel = locale === "ro" ? "Ecran complet" : "Full screen";
+  const exitFullscreenLabel =
+    locale === "ro" ? "Ieși din ecran complet" : "Exit full screen";
 
   const setFullscreenState = (isFullscreen: boolean) => {
-    if (!(tableShell instanceof HTMLElement) || !(fullscreenToggle instanceof HTMLButtonElement)) return;
+    if (
+      !(tableShell instanceof HTMLElement) ||
+      !(fullscreenToggle instanceof HTMLButtonElement)
+    )
+      return;
 
-    tableShell.classList.toggle('is-fullscreen', isFullscreen);
-    fullscreenToggle.textContent = isFullscreen ? exitFullscreenLabel : fullscreenLabel;
-    fullscreenToggle.setAttribute('aria-pressed', String(isFullscreen));
-    body.classList.toggle('table-fullscreen-open', isFullscreen);
-    body.style.overflow = isFullscreen ? 'hidden' : '';
+    tableShell.classList.toggle("is-fullscreen", isFullscreen);
+    fullscreenToggle.textContent = isFullscreen
+      ? exitFullscreenLabel
+      : fullscreenLabel;
+    fullscreenToggle.setAttribute("aria-pressed", String(isFullscreen));
+    body.classList.toggle("table-fullscreen-open", isFullscreen);
+    body.style.overflow = isFullscreen ? "hidden" : "";
   };
 
   const exitFullscreen = () => setFullscreenState(false);
 
   if (fullscreenToggle instanceof HTMLButtonElement) {
-    fullscreenToggle.addEventListener('click', () => {
-      const isFullscreen = tableShell instanceof HTMLElement && tableShell.classList.contains('is-fullscreen');
+    fullscreenToggle.addEventListener("click", () => {
+      const isFullscreen =
+        tableShell instanceof HTMLElement &&
+        tableShell.classList.contains("is-fullscreen");
       setFullscreenState(!isFullscreen);
     });
   }
 
-  window.addEventListener('keydown', (event: KeyboardEvent) => {
-    if (event.key === 'Escape') exitFullscreen();
+  window.addEventListener("keydown", (event: KeyboardEvent) => {
+    if (event.key === "Escape") exitFullscreen();
   });
 
   if (table instanceof HTMLTableElement) {
     const tbody = table.tBodies[0];
     const rows = Array.from(tbody.rows);
-    let sortKey = 'rank';
+    let sortKey = "rank";
     let sortDirection = 1;
 
     const getValue = (row: HTMLTableRowElement, key: string) => {
-      if (key === 'versionCount') return Number(row.dataset.versionCount || 0);
-      if (key === 'recentPlaysPerDay') return Number(row.dataset.recentPlaysPerDay || -1);
-      if (key === 'rank' || key === 'year' || key === 'plays') {
+      if (key === "versionCount") return Number(row.dataset.versionCount || 0);
+      if (key === "recentPlaysPerDay")
+        return Number(row.dataset.recentPlaysPerDay || -1);
+      if (key === "rank" || key === "year" || key === "plays") {
         return Number(row.dataset[key] || 0);
       }
-      return row.dataset[key] || '';
+      return row.dataset[key] || "";
     };
 
     const render = () => {
-      const visibleRows = rows
-        .sort((a, b) => {
-          const first = getValue(a, sortKey);
-          const second = getValue(b, sortKey);
-          if (typeof first === 'number' && typeof second === 'number') {
-            return (first - second) * sortDirection;
-          }
-          return String(first).localeCompare(String(second), locale) * sortDirection;
-        });
+      const visibleRows = rows.sort((a, b) => {
+        const first = getValue(a, sortKey);
+        const second = getValue(b, sortKey);
+        if (typeof first === "number" && typeof second === "number") {
+          return (first - second) * sortDirection;
+        }
+        return (
+          String(first).localeCompare(String(second), locale) * sortDirection
+        );
+      });
 
-      rows.forEach((row) => row.remove());
-      visibleRows.forEach((row) => tbody.append(row));
+      rows.forEach(row => row.remove());
+      visibleRows.forEach(row => tbody.append(row));
     };
 
-    table.querySelectorAll('[data-sort]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const nextKey = button.getAttribute('data-sort') || 'rank';
-        sortDirection = nextKey === sortKey ? sortDirection * -1 : ['plays', 'recentPlaysPerDay'].includes(nextKey) ? -1 : 1;
+    table.querySelectorAll("[data-sort]").forEach(button => {
+      button.addEventListener("click", () => {
+        const nextKey = button.getAttribute("data-sort") || "rank";
+        sortDirection =
+          nextKey === sortKey
+            ? sortDirection * -1
+            : ["plays", "recentPlaysPerDay"].includes(nextKey)
+              ? -1
+              : 1;
         sortKey = nextKey;
         render();
       });

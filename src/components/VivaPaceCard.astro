@@ -17,7 +17,8 @@ const { entry } = Astro.props as { entry: Entry };
 const locale = Astro.currentLocale ?? "ro";
 const isRomanian = locale === "ro";
 
-const formatNumber = (value: number) => new Intl.NumberFormat(locale).format(value);
+const formatNumber = (value: number) =>
+  new Intl.NumberFormat(locale).format(value);
 const formatDate = (value: string) =>
   new Intl.DateTimeFormat(locale, {
     day: "2-digit",
@@ -31,28 +32,33 @@ const startDate = periodStart ? new Date(`${periodStart}T00:00:00Z`) : null;
 const endDate = periodEnd ? new Date(`${periodEnd}T00:00:00Z`) : null;
 
 const knownPoints = (entry.history ?? [])
-  .map((point) => ({
+  .map(point => ({
     ...point,
     dateObj: new Date(`${point.date}T00:00:00Z`),
   }))
-  .filter((point) => !Number.isNaN(point.dateObj.valueOf()))
+  .filter(point => !Number.isNaN(point.dateObj.valueOf()))
   .sort((a, b) => a.dateObj.valueOf() - b.dateObj.valueOf());
 
-const pointByDate = new Map(knownPoints.map((point) => [point.date, point]));
+const pointByDate = new Map(knownPoints.map(point => [point.date, point]));
 
 const toDateKey = (date: Date) => date.toISOString().slice(0, 10);
-const addDays = (date: Date, days: number) => new Date(date.valueOf() + days * dayMs);
+const addDays = (date: Date, days: number) =>
+  new Date(date.valueOf() + days * dayMs);
 const diffDays = (start: Date, end: Date) =>
   Math.round((end.valueOf() - start.valueOf()) / dayMs);
 const forecastDays = 7;
 
 const chartDates: Date[] = [];
 if (startDate && endDate) {
-  for (let current = startDate; current <= endDate; current = addDays(current, 1)) {
+  for (
+    let current = startDate;
+    current <= endDate;
+    current = addDays(current, 1)
+  ) {
     chartDates.push(current);
   }
 } else {
-  knownPoints.slice(-12).forEach((point) => chartDates.push(point.dateObj));
+  knownPoints.slice(-12).forEach(point => chartDates.push(point.dateObj));
 }
 
 const chartPoints: Array<{
@@ -66,17 +72,26 @@ const chartPoints: Array<{
 for (const dateObj of chartDates) {
   const date = toDateKey(dateObj);
   const exact = pointByDate.get(date);
-  const previousKnown = [...knownPoints].reverse().find((point) => point.dateObj < dateObj);
-  const nextKnown = knownPoints.find((point) => point.dateObj > dateObj);
+  const previousKnown = [...knownPoints]
+    .reverse()
+    .find(point => point.dateObj < dateObj);
+  const nextKnown = knownPoints.find(point => point.dateObj > dateObj);
 
   let total = exact?.total ?? null;
-  let source: "observed" | "estimated" | "projected" = exact ? "observed" : "estimated";
+  let source: "observed" | "estimated" | "projected" = exact
+    ? "observed"
+    : "estimated";
 
   if (total === null && previousKnown && nextKnown) {
-    const span = Math.max(1, diffDays(previousKnown.dateObj, nextKnown.dateObj));
+    const span = Math.max(
+      1,
+      diffDays(previousKnown.dateObj, nextKnown.dateObj)
+    );
     const offset = diffDays(previousKnown.dateObj, dateObj);
     const ratio = offset / span;
-    total = Math.round(previousKnown.total + (nextKnown.total - previousKnown.total) * ratio);
+    total = Math.round(
+      previousKnown.total + (nextKnown.total - previousKnown.total) * ratio
+    );
   } else if (total === null && previousKnown) {
     total = previousKnown.total;
   } else if (total === null && nextKnown) {
@@ -85,7 +100,8 @@ for (const dateObj of chartDates) {
     total = 0;
   }
 
-  const previousTotal = chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].total : total;
+  const previousTotal =
+    chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].total : total;
   const rate = Math.max(0, total - previousTotal);
 
   chartPoints.push({
@@ -102,13 +118,19 @@ const projectionRate = Math.max(
   1,
   Math.round(
     recentWindow.reduce((sum, point) => sum + point.rate, 0) /
-      Math.max(1, recentWindow.length),
-  ),
+      Math.max(1, recentWindow.length)
+  )
 );
-let projectedTotal = chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].total : 0;
+let projectedTotal =
+  chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].total : 0;
 const projectedPoints = Array.from({ length: forecastDays }, (_, index) => {
-  const prevDate = chartPoints.length > 0 ? chartPoints[chartPoints.length - 1].dateObj : endDate;
-  const dateObj = prevDate ? addDays(prevDate, index + 1) : addDays(new Date(), index + 1);
+  const prevDate =
+    chartPoints.length > 0
+      ? chartPoints[chartPoints.length - 1].dateObj
+      : endDate;
+  const dateObj = prevDate
+    ? addDays(prevDate, index + 1)
+    : addDays(new Date(), index + 1);
   projectedTotal += projectionRate;
   return {
     date: toDateKey(dateObj),
@@ -121,7 +143,7 @@ const projectedPoints = Array.from({ length: forecastDays }, (_, index) => {
 
 const allPoints = [...chartPoints, ...projectedPoints];
 
-const maxRate = Math.max(...allPoints.map((point) => point.rate), 1);
+const maxRate = Math.max(...allPoints.map(point => point.rate), 1);
 const averageRate = entry.recentPlaysPerDay ?? 0;
 const width = 820;
 const height = 240;
@@ -130,7 +152,10 @@ const plotWidth = width - padding.left - padding.right;
 const plotHeight = height - padding.top - padding.bottom;
 const barGap = allPoints.length > 16 ? 2 : 6;
 const barWidth = allPoints.length
-  ? Math.max(4, (plotWidth - barGap * (allPoints.length - 1)) / allPoints.length)
+  ? Math.max(
+      4,
+      (plotWidth - barGap * (allPoints.length - 1)) / allPoints.length
+    )
   : 0;
 const xFor = (index: number) => padding.left + index * (barWidth + barGap);
 const yFor = (value: number) =>
@@ -139,28 +164,38 @@ const avgY = yFor(averageRate);
 const firstObservedPoint = chartPoints[0];
 const lastObservedPoint = chartPoints[chartPoints.length - 1];
 const lastProjectedPoint = projectedPoints[projectedPoints.length - 1];
-const observedCount = chartPoints.filter((point) => point.source === "observed").length;
-const estimatedCount = chartPoints.filter((point) => point.source === "estimated").length;
+const observedCount = chartPoints.filter(
+  point => point.source === "observed"
+).length;
+const estimatedCount = chartPoints.filter(
+  point => point.source === "estimated"
+).length;
 ---
 
 <section class="pace-card" aria-labelledby="viva-pace-heading">
   <div class="pace-header">
     <div>
-      <p class="pace-kicker">{isRomanian ? "Ritm zilnic aproximativ" : "Approximate daily rate"}</p>
+      <p class="pace-kicker">
+        {isRomanian ? "Ritm zilnic aproximativ" : "Approximate daily rate"}
+      </p>
       <h2 id="viva-pace-heading">Viva, Moldova!</h2>
       <p class="pace-copy">
-        {isRomanian
-          ? `Graficul folosește ${chartPoints.length} zile din perioada ${entry.recentPeriod}, plus ${forecastDays} zile proiectate separat după ultimul punct cunoscut. Avem ${observedCount} puncte măsurate și ${estimatedCount} zile estimate liniar între ele, ca să vezi media pentru intervalele în care lipsesc date.`
-          : `The chart uses ${chartPoints.length} days from ${entry.recentPeriod}, plus ${forecastDays} projected days after the last known point. We have ${observedCount} measured points and ${estimatedCount} days linearly estimated between them, so you can see the average across gaps in the data.`}
+        {
+          isRomanian
+            ? `Graficul folosește ${chartPoints.length} zile din perioada ${entry.recentPeriod}, plus ${forecastDays} zile proiectate separat după ultimul punct cunoscut. Avem ${observedCount} puncte măsurate și ${estimatedCount} zile estimate liniar între ele, ca să vezi media pentru intervalele în care lipsesc date.`
+            : `The chart uses ${chartPoints.length} days from ${entry.recentPeriod}, plus ${forecastDays} projected days after the last known point. We have ${observedCount} measured points and ${estimatedCount} days linearly estimated between them, so you can see the average across gaps in the data.`
+        }
       </p>
     </div>
 
     <div class="pace-stat">
       <strong>{formatNumber(averageRate)}</strong>
       <span>
-        {isRomanian
-          ? `ascultări/zi în ultimele ${entry.recentDays ?? chartPoints.length} zile`
-          : `plays/day in the last ${entry.recentDays ?? chartPoints.length} days`}
+        {
+          isRomanian
+            ? `ascultări/zi în ultimele ${entry.recentDays ?? chartPoints.length} zile`
+            : `plays/day in the last ${entry.recentDays ?? chartPoints.length} days`
+        }
       </span>
     </div>
   </div>
@@ -170,11 +205,9 @@ const estimatedCount = chartPoints.filter((point) => point.source === "estimated
       <svg
         viewBox={`0 0 ${width} ${height}`}
         role="img"
-        aria-label={
-          isRomanian
-            ? "Graficul ritmului zilnic aproximativ pentru Viva, Moldova! în ultimele săptămâni"
-            : "Approximate daily pace chart for Viva, Moldova! over the last weeks"
-        }
+        aria-label={isRomanian
+          ? "Graficul ritmului zilnic aproximativ pentru Viva, Moldova! în ultimele săptămâni"
+          : "Approximate daily pace chart for Viva, Moldova! over the last weeks"}
       >
         <rect
           x="0"
@@ -182,16 +215,14 @@ const estimatedCount = chartPoints.filter((point) => point.source === "estimated
           width={width}
           height={height}
           rx="20"
-          fill="transparent"
-        />
+          fill="transparent"></rect>
         <line
           x1={padding.left}
           x2={width - padding.right}
           y1={padding.top + plotHeight}
           y2={padding.top + plotHeight}
           stroke="currentColor"
-          stroke-opacity="0.2"
-        />
+          stroke-opacity="0.2"></line>
         <line
           x1={padding.left}
           x2={width - padding.right}
@@ -199,15 +230,15 @@ const estimatedCount = chartPoints.filter((point) => point.source === "estimated
           y2={avgY}
           stroke="var(--accent)"
           stroke-dasharray="6 6"
-          stroke-width="2"
-        />
+          stroke-width="2"></line>
         <text
           x={width - padding.right}
           y={Math.max(14, avgY - 6)}
           text-anchor="end"
           class="avg-label"
         >
-          {isRomanian ? "medie" : "average"} {formatNumber(averageRate)}/{isRomanian ? "zi" : "day"}
+          {isRomanian ? "medie" : "average"}
+          {formatNumber(averageRate)}/{isRomanian ? "zi" : "day"}
         </text>
         {
           chartPoints.map((point, index) => (
@@ -227,8 +258,8 @@ const estimatedCount = chartPoints.filter((point) => point.source === "estimated
                   "bar",
                   point.source === "estimated" && "estimated",
                   point.source === "projected" && "projected",
-                { peak: point.rate === maxRate },
-              ]}
+                  { peak: point.rate === maxRate },
+                ]}
               />
             </g>
           ))
@@ -238,7 +269,9 @@ const estimatedCount = chartPoints.filter((point) => point.source === "estimated
             <g>
               <title>
                 {`${formatDate(point.date)} · ${formatNumber(point.rate)} ${
-                  isRomanian ? "ascultări/zi · proiectat" : "plays/day · projected"
+                  isRomanian
+                    ? "ascultări/zi · proiectat"
+                    : "plays/day · projected"
                 }`}
               </title>
               <rect
@@ -247,7 +280,11 @@ const estimatedCount = chartPoints.filter((point) => point.source === "estimated
                 width={barWidth}
                 height={padding.top + plotHeight - yFor(point.rate)}
                 rx="5"
-                class:list={["bar", "projected", { peak: point.rate === maxRate }]}
+                class:list={[
+                  "bar",
+                  "projected",
+                  { peak: point.rate === maxRate },
+                ]}
               />
             </g>
           ))
@@ -256,20 +293,26 @@ const estimatedCount = chartPoints.filter((point) => point.source === "estimated
     </div>
 
     <div class="chart-foot">
-      <span>{firstObservedPoint ? formatDate(firstObservedPoint.date) : "—"}</span>
+      <span
+        >{firstObservedPoint ? formatDate(firstObservedPoint.date) : "—"}</span
+      >
       <span>
-        {lastObservedPoint
-          ? isRomanian
-            ? `măsurat până la ${formatDate(lastObservedPoint.date)}`
-            : `measured through ${formatDate(lastObservedPoint.date)}`
-          : "—"}
+        {
+          lastObservedPoint
+            ? isRomanian
+              ? `măsurat până la ${formatDate(lastObservedPoint.date)}`
+              : `measured through ${formatDate(lastObservedPoint.date)}`
+            : "—"
+        }
       </span>
       <span>
-        {lastProjectedPoint
-          ? isRomanian
-            ? `proiecție până la ${formatDate(lastProjectedPoint.date)}`
-            : `projection through ${formatDate(lastProjectedPoint.date)}`
-          : ""}
+        {
+          lastProjectedPoint
+            ? isRomanian
+              ? `proiecție până la ${formatDate(lastProjectedPoint.date)}`
+              : `projection through ${formatDate(lastProjectedPoint.date)}`
+            : ""
+        }
       </span>
     </div>
   </div>

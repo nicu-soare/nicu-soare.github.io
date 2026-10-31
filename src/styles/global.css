@@ -16,6 +16,11 @@
   }
   body {
     line-height: 1.65;
+    /* faint cyan grid at night; transparent by day */
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
   h1,
   h2,
@@ -46,34 +51,36 @@
 }
 
 @utility active-nav {
-  @apply decoration-sun underline decoration-wavy decoration-2 underline-offset-8;
+  @apply decoration-sea underline decoration-wavy decoration-2 underline-offset-8;
 }
 
-/* A wave drawn in the sea colour: the horizon under the sun on the home page,
-   the shore line above the footer. Repeats horizontally, 24px per wave. */
+/* A wave in the sea colour: the shore line above the footer and the divider
+   on post pages. Drawn as a mask so it follows the theme; glows at night. */
 @utility wave-rule {
   height: 10px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'><path d='M0 5c3-4 6-4 9 0s6 4 9 0 4-3 6-1' fill='none' stroke='%231f6f8b' stroke-width='1.6' stroke-linecap='round'/></svg>");
-  background-repeat: repeat-x;
-  background-position: center;
+  background-color: var(--sea);
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'><path d='M0 5c3-4 6-4 9 0s6 4 9 0 4-3 6-1' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/></svg>");
+  mask-repeat: repeat-x;
+  mask-position: center;
+  filter: drop-shadow(0 0 4px var(--glow));
 }
 
-[data-theme="dark"] .wave-rule {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'><path d='M0 5c3-4 6-4 9 0s6 4 9 0 4-3 6-1' fill='none' stroke='%234fa3bf' stroke-width='1.6' stroke-linecap='round'/></svg>");
+/* Neon text: the wordmark and the home headline at night. */
+@utility neon {
+  text-shadow: 0 0 10px color-mix(in srgb, var(--glow) 55%, transparent);
 }
 
 /* Links in running text: sun-yellow underline, and on hover the whole link
    gets a yellow marker highlight, like a line underlined with a highlighter. */
 @utility sun-link {
-  @apply decoration-sun underline decoration-2 underline-offset-4;
+  @apply decoration-accent underline decoration-2 underline-offset-4;
   transition:
     background-color 120ms ease-out,
     text-decoration-color 120ms ease-out;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   &:hover {
-    @apply bg-sun decoration-transparent;
-    color: #1d2b3a;
+    @apply bg-accent text-accent-foreground decoration-transparent;
   }
 }
 

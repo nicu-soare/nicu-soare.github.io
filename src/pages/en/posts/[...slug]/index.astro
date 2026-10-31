@@ -114,7 +114,7 @@ const ogImage = ogImageUrl
   >
     <h1
       style={{ viewTransitionName: toTransitionName(title) }}
-      class="text-accent inline-block text-2xl font-bold sm:text-3xl"
+      class="font-display inline-block text-3xl leading-tight font-extrabold sm:text-4xl"
     >
       {title}
     </h1>
@@ -144,7 +144,7 @@ const ogImage = ogImageUrl
       <Content />
     </article>
 
-    <hr class="my-8 border-dashed" />
+    <div class="wave-rule my-8" role="separator"></div>
 
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
@@ -156,7 +156,7 @@ const ogImage = ogImageUrl
 
     <ShareLinks />
 
-    <hr class="my-8 border-dashed" />
+    <div class="wave-rule my-8" role="separator"></div>
 
     <AdjacentPostNav {prevPost} {nextPost} />
   </main>
@@ -374,7 +374,10 @@ const ogImage = ogImageUrl
             );
             currentScale = Math.min(
               4,
-              Math.max(1, initialScale * (distance / Math.max(lastTouchDistance, 1)))
+              Math.max(
+                1,
+                initialScale * (distance / Math.max(lastTouchDistance, 1))
+              )
             );
             applyTransform();
           } else if (t.length === 1) {
@@ -461,7 +464,9 @@ const ogImage = ogImageUrl
     function trapFocus(e) {
       if (!overlay || e.key !== "Tab") return;
       const focusables = Array.from(
-        overlay.querySelectorAll<HTMLElement>("button, [href], [tabindex]:not([tabindex='-1'])")
+        overlay.querySelectorAll<HTMLElement>(
+          "button, [href], [tabindex]:not([tabindex='-1'])"
+        )
       );
       if (focusables.length === 0) return;
       const first = focusables[0];

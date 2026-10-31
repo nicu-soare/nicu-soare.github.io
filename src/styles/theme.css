@@ -21,30 +21,37 @@
 }
 
 /*
-  Palette: "Soare" (sun) over the Moldovan internet sea.
-  Light = a sunny day on sun-washed paper; dark = the same sea at night.
+  Palette: an Outrun sun setting over the Moldovan internet.
+  Default (dark) = night neon: near-black navy, cyan horizon, magenta links,
+  a yellow-to-magenta sun. Light = the same scene by day on sun-washed paper.
 */
 :root,
+[data-theme="dark"] {
+  --background: #0b0f1f;
+  --foreground: #e8ecf7;
+  --accent: #ff2d95; /* magenta: links, progress bar, buttons */
+  --accent-foreground: #ffffff;
+  --sun: #ffd54a; /* top of the sun */
+  --sun-low: #ff2d95; /* bottom of the sun */
+  --sea: #2de2e6; /* cyan: horizon, headings, wave */
+  --glow: #ff2d95;
+  --muted: #161c33;
+  --muted-foreground: #9aa3c0;
+  --border: #1f2a4a;
+  --grid: rgba(45, 226, 230, 0.06);
+}
+
 [data-theme="light"] {
   --background: #fff7e3; /* sun-washed paper */
   --foreground: #1d2b3a; /* deep sea ink */
   --accent: #9a5200; /* dark amber, readable link colour on paper */
   --accent-foreground: #fff7e3;
-  --sun: #ffc72c; /* the sun itself: marks, highlights, progress bar */
-  --sea: #1f6f8b; /* the wave */
+  --sun: #ffd23a;
+  --sun-low: #ff5c1a;
+  --sea: #1f6f8b;
+  --glow: transparent;
   --muted: #f6e7bd; /* sand */
   --muted-foreground: #5f6b77;
   --border: #ead9a6;
-}
-
-[data-theme="dark"] {
-  --background: #0f1c2b; /* night sea */
-  --foreground: #f5ebd2;
-  --accent: #ffc72c; /* the sun glows as the link colour at night */
-  --accent-foreground: #0f1c2b;
-  --sun: #ffc72c;
-  --sea: #4fa3bf;
-  --muted: #1c2d40;
-  --muted-foreground: #a9b4c0;
-  --border: #2b3f56;
+  --grid: transparent;
 }

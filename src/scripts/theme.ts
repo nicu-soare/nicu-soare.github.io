@@ -3,11 +3,8 @@ const LIGHT = "light";
 const DARK = "dark";
 
 function getPreferredTheme(): string {
-  const stored = localStorage.getItem(THEME_KEY);
-  if (stored) return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? DARK
-    : LIGHT;
+  // Night is the default look; the header toggle is remembered.
+  return localStorage.getItem(THEME_KEY) ?? DARK;
 }
 
 // Reuse the value already set by the inline FOUC-prevention script if available.
