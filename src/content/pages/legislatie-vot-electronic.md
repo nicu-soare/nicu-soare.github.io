@@ -35,7 +35,9 @@ Surse: [dosarul proiectului, parlament.md](https://www.parlament.md/material-det
 ## 4. Ce urmează
 
 - **26 octombrie 2026**: CEC a adoptat hotărârea „privind unele particularități de exercitare a dreptului de vot în cadrul alegerilor locale noi și al referendumului local din 1 noiembrie 2026”, la trei zile după anunțul pilotului. Din sinteza ședinței: identificarea cu actul digital „se efectuează prin intermediul aplicației puse la dispoziția organelor electorale de către Comisia Electorală Centrală”, iar membrul biroului scrie în lista electorală, la rubrica „Notă”, mențiunea „Identificat electronic - EVO” ([sinteza ședinței](https://a.cec.md/ro/sinteza-sedintei-comisiei-electorale-centrale-din-26-octombrie-2026-2781_120619.html)). Sinteza nu spune nimic despre ce vede operatorul, despre semnătura pe hârtie sau despre software-ul laptopurilor. Textul hotărârii nu era publicat în seara zilei de 26 octombrie.
-- **1 și 15 noiembrie 2026**: pilotul EVO la alegerile locale noi și în Găgăuzia ([comunicatul CEC](https://a.cec.md/ro/alegatorii-vor-putea-utiliza-actele-de-identitate-digitale-la-2781_120599.html)). Pentru 15 noiembrie, hotărârea CEC încă nu a fost adoptată.
+- **26 octombrie 2026**: am depus la CEC o cerere cu nouă întrebări despre pilot (înregistrată sub nr. CEC-9/746). Răspunsul, din 31 octombrie, e publicat în [Ce mi-a răspuns CEC despre identificarea cu EVO la secția de vot](/posts/raspunsul-cec-despre-evo/). Pe scurt: hotărârea pilotului e nr. 4812; operatorul vede datele și fotografia din actul digital și trebuie să compare fotografia cu persoana; nu a existat audit independent, doar o verificare pentru certificatul AGE și un audit intern confidențial; regulamentul observatorilor nu le dă dreptul să vadă ecranul operatorului; jurnalul identificărilor e ținut doar de CEC și „poate fi” confruntat cu listele pe hârtie.
+- **31 octombrie 2026**: prin Hotărârea nr. 4829, CEC a decis să nu aplice identificarea prin EVO la alegerile din 1 noiembrie, „în contextul incidentelor de securitate cibernetică care au vizat serviciile publice digitale ale statului”, în baza unei adrese AGE din 30 octombrie ([Privesc.Eu](https://www.privesc.eu/article/112529/f0fca49d-d282-5203-9f56-951257238158); [răspunsul CEC](/docs/CEC-8-11606-din-31-10-2026.pdf)). Identificarea prin EVO urmează să fie integrată în aplicația E-Day a sistemului „Alegeri”, al cărei caiet de sarcini e în lucru.
+- **15 noiembrie 2026**: pilotul EVO la alegerile din Găgăuzia ([comunicatul CEC](https://a.cec.md/ro/alegatorii-vor-putea-utiliza-actele-de-identitate-digitale-la-2781_120599.html)). Hotărârea 4829 nu îl vizează; hotărârea CEC pentru 15 noiembrie încă nu a fost adoptată.
 - Apoi, declarat de CEC: „toate scrutinele naționale viitoare”.
 
 ## Istoric
@@ -46,6 +48,7 @@ Surse: [dosarul proiectului, parlament.md](https://www.parlament.md/material-det
 - 28 septembrie 2025: liste electorale electronice și tablete în 30 de secții ([HCEC nr. 3916/2025](https://a.cec.md/ro/privind-unele-particularitati-de-organizare-si-desfasurare-a-alegerilor-parlamen-2751_115052.html)).
 - 25 august 2026: Legea nr. 192, de mai sus.
 - 23 octombrie 2026: anunțul pilotului EVO ([comunicatul CEC](https://a.cec.md/ro/alegatorii-vor-putea-utiliza-actele-de-identitate-digitale-la-2781_120599.html)).
-- 26 octombrie 2026: hotărârea CEC pentru pilotul din 1 noiembrie ([sinteza ședinței](https://a.cec.md/ro/sinteza-sedintei-comisiei-electorale-centrale-din-26-octombrie-2026-2781_120619.html)).
+- 26 octombrie 2026: Hotărârea CEC nr. 4812 pentru pilotul din 1 noiembrie ([sinteza ședinței](https://a.cec.md/ro/sinteza-sedintei-comisiei-electorale-centrale-din-26-octombrie-2026-2781_120619.html)); cererea mea e înregistrată la CEC în aceeași zi.
+- 31 octombrie 2026: Hotărârea CEC nr. 4829, pilotul din 1 noiembrie nu se mai aplică; răspunsul CEC la cerere ([articol](/posts/raspunsul-cec-despre-evo/)).
 
-Ultima verificare la sursă: 26 octombrie 2026.
+Ultima verificare la sursă: 31 octombrie 2026.
