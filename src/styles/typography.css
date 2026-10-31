@@ -82,7 +82,7 @@
     }
 
     blockquote {
-      @apply border-s-sun border-s-4 font-normal wrap-break-word not-italic opacity-90;
+      @apply hud border-s-accent border-s-4 py-2 font-normal wrap-break-word not-italic opacity-90;
     }
 
     details:not(.callout) {
@@ -100,7 +100,7 @@
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
   .astro-code {
-    @apply outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
+    @apply hud outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
   }
 
   html[data-theme="dark"] .astro-code {

@@ -64,12 +64,7 @@ const recentEntries = [...pageEntries, ...postEntries].sort(
   (a, b) => b.updatedDate.valueOf() - a.updatedDate.valueOf()
 );
 const homePath = getRelativeLocaleUrl(locale, "");
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(date);
+const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
 <Layout>
@@ -86,9 +81,13 @@ const formatDate = (date: Date) =>
           class="basis-full pb-6 sm:max-w-[27rem] sm:flex-1 sm:basis-auto md:max-w-[29rem]"
         >
           <h1
-            class="font-display neon text-4xl leading-[1.05] font-extrabold sm:text-5xl md:text-6xl"
+            id="tagline"
+            class="font-display neon min-h-[3.15em] text-4xl leading-[1.05] font-extrabold sm:text-5xl md:text-6xl"
+            aria-label={t.home.tagline}
           >
-            {t.home.tagline}
+            <span id="tagline-text">{t.home.tagline}</span><span
+              class="cursor-block"
+              aria-hidden="true"></span>
           </h1>
           <p class="mt-5 max-w-prose">
             {t.home.intro}
@@ -130,6 +129,7 @@ const formatDate = (date: Date) =>
         role="presentation"
       >
       </div>
+      <div class="floor" aria-hidden="true"></div>
     </section>
 
     {
@@ -153,11 +153,11 @@ const formatDate = (date: Date) =>
 
     {
       recentEntries.length > 0 && (
-        <section id="recent-posts" class="pt-14 pb-6">
+        <section id="recent-posts" class="pt-6 pb-6">
           <h2 class="font-display text-2xl font-bold">{t.home.recentPosts}</h2>
           <ul>
             {recentEntries.slice(0, postsConfig.perIndex).map(item => (
-              <li class="my-7">
+              <li class="hud my-5 px-5 py-3">
                 <a
                   href={item.href}
                   class="font-display text-sea hover:text-accent inline-block text-xl leading-snug font-bold decoration-wavy decoration-2 underline-offset-4 hover:underline focus-visible:no-underline"
@@ -165,10 +165,10 @@ const formatDate = (date: Date) =>
                   <h3>{item.title}</h3>
                 </a>
                 <time
-                  class="text-muted-foreground mt-1 block text-sm italic"
+                  class="text-muted-foreground mt-1 block font-mono text-sm"
                   datetime={item.updatedDate.toISOString()}
                 >
-                  {formatDate(item.updatedDate)}
+                  [{isoDate(item.updatedDate)}]
                 </time>
                 <p class="mt-1">{item.description}</p>
               </li>
@@ -179,10 +179,7 @@ const formatDate = (date: Date) =>
     }
 
     <div class="my-10 text-center">
-      <LinkButton
-        href={getRelativeLocaleUrl(locale, "posts")}
-        class="bg-accent text-accent-foreground font-display hover:text-accent-foreground rounded-full px-5 py-2.5 font-semibold shadow-[0_0_16px_var(--glow)] transition-transform hover:translate-y-px"
-      >
+      <LinkButton href={getRelativeLocaleUrl(locale, "posts")} class="neon-btn">
         {t.home.allPosts}
         <IconArrowRight class="inline-block rtl:-rotate-180" />
       </LinkButton>
@@ -192,6 +189,28 @@ const formatDate = (date: Date) =>
 </Layout>
 
 <script>
+  // 4. Type the headline once per browser session; keep it static after that.
+  function typeTagline() {
+    const el = document.getElementById("tagline-text");
+    if (!el) return;
+    const full = el.textContent ?? "";
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduce || sessionStorage.getItem("taglineTyped")) return;
+    sessionStorage.setItem("taglineTyped", "1");
+    el.textContent = "";
+    let i = 0;
+    const tick = () => {
+      if (i > full.length) return;
+      el.textContent = full.slice(0, i++);
+      setTimeout(tick, 45);
+    };
+    setTimeout(tick, 300);
+  }
+  typeTagline();
+  document.addEventListener("astro:after-swap", typeTagline);
+
   document.addEventListener("astro:page-load", () => {
     const indexLayout = (document.querySelector("#main-content") as HTMLElement)
       ?.dataset;

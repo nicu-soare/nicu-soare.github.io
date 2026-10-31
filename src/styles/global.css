@@ -8,8 +8,19 @@
 @layer base {
   * {
     @apply border-border outline-accent/75;
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--muted);
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--sea), var(--accent));
+    border-radius: 4px;
   }
   html {
     font-size: 17px;
@@ -21,6 +32,37 @@
       linear-gradient(var(--grid) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 32px 32px;
+  }
+  /* film grain over everything at night; --grain-opacity is 0 by day */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: -100%;
+    z-index: 60;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    animation: grain 1s steps(6) infinite;
+  }
+  @keyframes grain {
+    0% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(-5%, 3%);
+    }
+    40% {
+      transform: translate(4%, -6%);
+    }
+    60% {
+      transform: translate(-3%, 5%);
+    }
+    80% {
+      transform: translate(6%, 2%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
   }
   h1,
   h2,
@@ -70,17 +112,255 @@
   text-shadow: 0 0 10px color-mix(in srgb, var(--glow) 55%, transparent);
 }
 
-/* Links in running text: sun-yellow underline, and on hover the whole link
-   gets a yellow marker highlight, like a line underlined with a highlighter. */
+/* Links in running text: a magenta underline; on hover a cyan sweep runs
+   along it. Drawn as a background so the sweep can animate. */
 @utility sun-link {
-  @apply decoration-accent underline decoration-2 underline-offset-4;
-  transition:
-    background-color 120ms ease-out,
-    text-decoration-color 120ms ease-out;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  text-decoration: none;
+  background-image: linear-gradient(90deg, var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 2px;
+  padding-bottom: 1px;
+  transition: color 150ms ease-out;
   &:hover {
-    @apply bg-accent text-accent-foreground decoration-transparent;
+    color: var(--sea);
+    background-image: linear-gradient(
+      90deg,
+      var(--sea) 0 30%,
+      var(--accent) 30%
+    );
+    background-size: 200% 2px;
+    animation: sweep 900ms linear infinite;
+  }
+}
+@keyframes sweep {
+  from {
+    background-position: 0 100%;
+  }
+  to {
+    background-position: 200% 100%;
+  }
+}
+
+/* 6. HUD corner brackets on cards, quotes and code blocks */
+@utility hud {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--sea);
+    transition:
+      width 200ms,
+      height 200ms,
+      box-shadow 200ms;
+    pointer-events: none;
+  }
+  &::before {
+    left: 0;
+    top: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  &::after {
+    right: 0;
+    bottom: 0;
+    border-left: 0;
+    border-top: 0;
+  }
+  &:hover::before,
+  &:hover::after {
+    width: 22px;
+    height: 22px;
+    box-shadow: 0 0 8px var(--glow);
+  }
+}
+
+/* 7. Neon outlined button that fills with glow on hover */
+@utility neon-btn {
+  @apply font-display inline-flex items-center gap-1 rounded-full border-[1.5px] px-5 py-2.5 font-semibold;
+  border-color: var(--accent);
+  color: var(--accent);
+  transition:
+    background-color 200ms,
+    color 200ms,
+    box-shadow 200ms;
+  &:hover {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--glow) 70%, transparent);
+  }
+}
+
+/* 7. Tag chip with clipped corners */
+@utility chip {
+  @apply inline-flex items-center font-mono text-sm;
+  color: var(--sea);
+  border: 1px solid var(--sea);
+  background: color-mix(in srgb, var(--sea) 8%, transparent);
+  clip-path: polygon(
+    8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%,
+    0 8px
+  );
+  transition:
+    background-color 150ms,
+    color 150ms;
+  &:hover {
+    background-color: var(--sea);
+    color: var(--background);
+  }
+}
+
+/* 3. RGB-split glitch on the wordmark: once on load (.on), then on hover */
+@utility glitch {
+  position: relative;
+  display: inline-block;
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    text-shadow: none;
+    pointer-events: none;
+  }
+  &::before {
+    color: var(--accent);
+    left: -3px;
+  }
+  &::after {
+    color: var(--sun);
+    left: 3px;
+  }
+  &:hover::before,
+  &.on::before {
+    opacity: 0.9;
+    animation: glitch-a 700ms steps(1) infinite;
+  }
+  &:hover::after,
+  &.on::after {
+    opacity: 0.9;
+    animation: glitch-b 700ms steps(1) infinite;
+  }
+}
+@keyframes glitch-a {
+  0% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-4px, 0);
+  }
+  25% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(3px, 0);
+  }
+  50% {
+    clip-path: inset(30% 0 50% 0);
+    transform: translate(-2px, 0);
+  }
+  75% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(4px, 0);
+  }
+  100% {
+    clip-path: inset(10% 0 70% 0);
+  }
+}
+@keyframes glitch-b {
+  0% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translate(4px, 0);
+  }
+  25% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-3px, 0);
+  }
+  50% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(2px, 0);
+  }
+  75% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(-4px, 0);
+  }
+  100% {
+    clip-path: inset(70% 0 10% 0);
+  }
+}
+
+/* 4. Blinking block cursor after the typed headline */
+@utility cursor-block {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.95em;
+  margin-left: 0.08em;
+  vertical-align: -0.08em;
+  background: var(--sea);
+  box-shadow: 0 0 8px var(--sea);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* 10. Reading progress beam */
+@utility neon-bar {
+  background: linear-gradient(90deg, var(--sea), var(--accent));
+  box-shadow: 0 0 10px var(--glow);
+}
+
+/* 1. The perspective floor under the horizon */
+@utility floor {
+  position: relative;
+  height: 4.5rem;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    left: -40%;
+    right: -40%;
+    top: 0;
+    height: 300px;
+    transform-origin: top;
+    transform: perspective(220px) rotateX(62deg);
+    background-image:
+      linear-gradient(
+        color-mix(in srgb, var(--sea) 70%, transparent) 2px,
+        transparent 2px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--sea) 70%, transparent) 2px,
+        transparent 2px
+      );
+    background-size: 60px 44px;
+    animation: floor 2.4s linear infinite;
+  }
+}
+@keyframes floor {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after,
+  .floor::before,
+  .glitch::before,
+  .glitch::after,
+  .cursor-block,
+  .sun-link:hover {
+    animation: none !important;
   }
 }
 

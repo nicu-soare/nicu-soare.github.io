@@ -41,6 +41,9 @@ export default {
   footer: {
     copyright: "Copyright",
     allRightsReserved: "All rights reserved.",
+    onlineSince: "online since 1998",
+    build: "build",
+    systemOk: "all systems go",
   },
   pages: {
     tagTitle: "Tag",

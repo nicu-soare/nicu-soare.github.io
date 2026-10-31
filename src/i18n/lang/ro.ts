@@ -41,6 +41,9 @@ export default {
   footer: {
     copyright: "Copyright",
     allRightsReserved: "Toate drepturile rezervate.",
+    onlineSince: "online din 1998",
+    build: "build",
+    systemOk: "sistem ok",
   },
   pages: {
     tagTitle: "Etichetă",
