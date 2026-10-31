@@ -32,6 +32,7 @@ export default {
     featured: "Featured",
     recentPosts: "Recent Posts",
     allPosts: "All Posts",
+    tagline: "Nicu surfs the Moldovan internet.",
     intro:
       "Nicu has been active on the Moldovan internet since around 1998 and has seen it evolve through many changes. He is a software engineer and works as a tech lead.",
     seeAlso: "See also",

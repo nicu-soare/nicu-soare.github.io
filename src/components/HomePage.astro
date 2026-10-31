@@ -1,0 +1,197 @@
+---
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Socials from "@/components/Socials.astro";
+import Card from "@/components/Card.astro";
+import HeroSun from "@/components/HeroSun.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import { getSortedPosts } from "@/utils/getSortedPosts";
+import { getPostUrl } from "@/utils/getPostPaths";
+import { filterPostsByLocale } from "@/utils/filterPostsByLocale";
+import { useTranslations } from "@/i18n";
+import config from "@/config";
+import moldovaSpotifyData from "@/data/moldova-eurovision-spotify.json";
+
+const { socials, posts: postsConfig } = config;
+
+const locale = Astro.currentLocale ?? config.site.lang;
+const t = useTranslations(locale);
+const isRomanian = locale === "ro";
+
+const posts = await getCollection("posts");
+const localizedPosts = filterPostsByLocale(posts, locale);
+const sortedPosts = getSortedPosts(localizedPosts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const pageEntries = [
+  {
+    kind: "page",
+    title: isRomanian
+      ? "Topul pieselor Moldovei la Eurovision după ascultări pe Spotify"
+      : "Moldova Eurovision songs by Spotify plays",
+    description: isRomanian
+      ? "Piesele Moldovei la Eurovision, ordonate după numărul de ascultări pe Spotify."
+      : "Moldova's Eurovision entries, ranked by Spotify plays.",
+    href: getRelativeLocaleUrl(locale, "top-moldova-eurovision-songs"),
+    updatedDate: new Date(moldovaSpotifyData.generatedAt),
+  },
+  ...(isRomanian
+    ? [
+        {
+          kind: "page",
+          title: "Legislație despre votul electronic",
+          description:
+            "Ce permite deja legea, ce e pregătit pentru mai târziu și cum a trecut prin Parlament. Fiecare afirmație are linkul la sursă.",
+          href: `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}legislatie-vot-electronic/`,
+          updatedDate: new Date("2026-10-27"),
+        },
+      ]
+    : []),
+];
+const postEntries = recentPosts.map(post => ({
+  kind: "post",
+  title: post.data.title,
+  description: post.data.description,
+  href: getPostUrl(post.id, post.filePath, Astro.currentLocale),
+  updatedDate: new Date(post.data.modDatetime ?? post.data.pubDatetime),
+}));
+const recentEntries = [...pageEntries, ...postEntries].sort(
+  (a, b) => b.updatedDate.valueOf() - a.updatedDate.valueOf()
+);
+const homePath = getRelativeLocaleUrl(locale, "");
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+---
+
+<Layout>
+  <Header mark={false} />
+  <main
+    id="main-content"
+    data-layout="index"
+    data-home-path={homePath}
+    class="app-layout"
+  >
+    <section id="hero" class="pt-6 sm:pt-10">
+      <div class="flex flex-wrap items-end justify-between gap-x-4">
+        <div class="basis-full pb-6 sm:flex-1 sm:basis-auto">
+          <h1
+            class="font-display text-4xl leading-[1.05] font-extrabold sm:text-6xl"
+          >
+            {t.home.tagline}
+          </h1>
+          <p class="mt-5 max-w-prose">
+            {t.home.intro}
+          </p>
+          <p class="mt-2 max-w-prose">
+            {t.home.seeAlso}{" "}
+            <a
+              class="sun-link"
+              href={getRelativeLocaleUrl(
+                locale,
+                "top-moldova-eurovision-songs"
+              )}>{t.home.eurovisionLink}</a
+            >.
+          </p>
+          <div class="mt-4 flex items-center gap-1">
+            <span class="me-1">{t.home.socialLinks}:</span>
+            {socials.length > 0 && <Socials />}
+            <a
+              target="_blank"
+              href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
+              class="hover:text-accent p-2 hover:rotate-6 sm:p-1"
+              aria-label={isRomanian ? "Flux RSS" : "RSS feed"}
+              title={isRomanian ? "Flux RSS" : "RSS feed"}
+            >
+              <IconRss
+                class="inline-block size-6 scale-110 stroke-2 rtl:-rotate-90"
+              />
+              <span class="sr-only">{isRomanian ? "Flux RSS" : "RSS feed"}</span
+              >
+            </a>
+          </div>
+        </div>
+        <div class="ms-auto">
+          <HeroSun />
+        </div>
+      </div>
+      <div class="wave-rule" role="presentation"></div>
+    </section>
+
+    {
+      featuredPosts.length > 0 && (
+        <section
+          id="featured"
+          class:list={[
+            "pt-12 pb-6",
+            { "border-border border-b": recentPosts.length > 0 },
+          ]}
+        >
+          <h2 class="font-display text-2xl font-bold">{t.home.featured}</h2>
+          <ul>
+            {featuredPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      recentEntries.length > 0 && (
+        <section id="recent-posts" class="pt-10 pb-6">
+          <h2 class="font-display text-2xl font-bold">{t.home.recentPosts}</h2>
+          <ul>
+            {recentEntries.slice(0, postsConfig.perIndex).map(item => (
+              <li class="my-7">
+                <a
+                  href={item.href}
+                  class="font-display decoration-sun hover:text-accent inline-block text-xl leading-snug font-bold decoration-wavy decoration-2 underline-offset-4 hover:underline focus-visible:no-underline"
+                >
+                  <h3>{item.title}</h3>
+                </a>
+                <time
+                  class="text-muted-foreground mt-1 block text-sm italic"
+                  datetime={item.updatedDate.toISOString()}
+                >
+                  {formatDate(item.updatedDate)}
+                </time>
+                <p class="mt-1">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="my-10 text-center">
+      <LinkButton
+        href={getRelativeLocaleUrl(locale, "posts")}
+        class="bg-sun font-display rounded-full px-5 py-2.5 font-semibold text-[#1d2b3a] shadow-[0_2px_0_0_var(--foreground)] transition-transform hover:translate-y-px hover:text-[#1d2b3a] hover:shadow-[0_1px_0_0_var(--foreground)]"
+      >
+        {t.home.allPosts}
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset;
+    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+    if (indexLayout?.layout) {
+      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+    }
+  });
+</script>

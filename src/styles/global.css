@@ -11,6 +11,22 @@
     scrollbar-width: auto;
     scrollbar-color: var(--color-muted) transparent;
   }
+  html {
+    font-size: 17px;
+  }
+  body {
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
   a,
   button {
     @apply outline-accent outline-offset-1 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
@@ -30,7 +46,35 @@
 }
 
 @utility active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  @apply decoration-sun underline decoration-wavy decoration-2 underline-offset-8;
+}
+
+/* A wave drawn in the sea colour: the horizon under the sun on the home page,
+   the shore line above the footer. Repeats horizontally, 24px per wave. */
+@utility wave-rule {
+  height: 10px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'><path d='M0 5c3-4 6-4 9 0s6 4 9 0 4-3 6-1' fill='none' stroke='%231f6f8b' stroke-width='1.6' stroke-linecap='round'/></svg>");
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+[data-theme="dark"] .wave-rule {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'><path d='M0 5c3-4 6-4 9 0s6 4 9 0 4-3 6-1' fill='none' stroke='%234fa3bf' stroke-width='1.6' stroke-linecap='round'/></svg>");
+}
+
+/* Links in running text: sun-yellow underline, and on hover the whole link
+   gets a yellow marker highlight, like a line underlined with a highlighter. */
+@utility sun-link {
+  @apply decoration-sun underline decoration-2 underline-offset-4;
+  transition:
+    background-color 120ms ease-out,
+    text-decoration-color 120ms ease-out;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  &:hover {
+    @apply bg-sun decoration-transparent;
+    color: #1d2b3a;
+  }
 }
 
 :target {

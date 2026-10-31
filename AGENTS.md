@@ -106,3 +106,12 @@ cd ~/perso/projects/spotify_stats && .venv/bin/python refresh_moldova_eurovision
 - Folosește data curentă la `--date`, cu excepția cazului în care utilizatorul cere explicit altă dată.
 - Exportul include seria `history` pentru fiecare piesă, construită din snapshot-uri Spotify; `track_history.json` rămâne doar un fallback vechi.
 - După regenerare, rulează `npm run build` în blog și verifică ruta `/top-moldova-eurovision-songs/` în output.
+
+## Design („Soare”)
+
+- Identitatea vizuală: soarele (numele autorului) deasupra unui val (internetul pe care „surfează”). Pe pagina principală soarele mare răsare din spatele valului (`src/components/HeroSun.astro`); în modul întunecat devine lună cu stele. Pe celelalte pagini apare un soare mic lângă nume, în header (`src/components/SunMark.astro`).
+- Culorile sunt în `src/styles/theme.css`: hârtie bătută de soare / cerneală albastru-marin, galben-soare (`--sun`) pentru accente și linkuri la hover, albastru-mare (`--sea`) pentru valuri. Modul întunecat este aceeași mare, noaptea.
+- Fonturi self-hosted (fontsource): Bricolage Grotesque pentru titluri și navigație (`font-display`), Literata pentru text.
+- Utilitare proprii în `src/styles/global.css`: `wave-rule` (linie-val, folosită ca separator), `sun-link` (link cu subliniere galbenă și evidențiere la hover), `active-nav`.
+- Pagina principală este o singură componentă, `src/components/HomePage.astro`, folosită de `src/pages/index.astro` și `src/pages/en/index.astro`.
+- Imaginea OG (`public/default-og.jpg`, 1200×630) și `public/favicon.svg` folosesc același soare. Dacă se schimbă sloganul, regenerează imaginea OG.

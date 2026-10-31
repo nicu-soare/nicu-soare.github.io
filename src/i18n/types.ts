@@ -31,6 +31,7 @@ export interface UIStrings {
     recentPosts: string;
     allPosts: string;
     intro: string;
+    tagline: string;
     seeAlso: string;
     eurovisionLink: string;
   };

@@ -1,3 +1,9 @@
+/* Self-hosted fonts (fontsource, variable). Bricolage Grotesque for display,
+   Literata for reading. Both cover Romanian diacritics (ș ț with comma). */
+@import "@fontsource-variable/bricolage-grotesque/index.css";
+@import "@fontsource-variable/literata/index.css";
+@import "@fontsource-variable/literata/wght-italic.css";
+
 /* Register design tokens for Tailwind v4 */
 @theme inline {
   --color-background: var(--background);
@@ -7,29 +13,38 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  --color-sun: var(--sun);
+  --color-sea: var(--sea);
+  --font-app: "Literata Variable", Georgia, "Times New Roman", serif;
+  --font-display:
+    "Bricolage Grotesque Variable", "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Light theme values */
+/*
+  Palette: "Soare" (sun) over the Moldovan internet sea.
+  Light = a sunny day on sun-washed paper; dark = the same sea at night.
+*/
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --background: #fff7e3; /* sun-washed paper */
+  --foreground: #1d2b3a; /* deep sea ink */
+  --accent: #9a5200; /* dark amber, readable link colour on paper */
+  --accent-foreground: #fff7e3;
+  --sun: #ffc72c; /* the sun itself: marks, highlights, progress bar */
+  --sea: #1f6f8b; /* the wave */
+  --muted: #f6e7bd; /* sand */
+  --muted-foreground: #5f6b77;
+  --border: #ead9a6;
 }
 
-/* Dark theme values */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #0f1c2b; /* night sea */
+  --foreground: #f5ebd2;
+  --accent: #ffc72c; /* the sun glows as the link colour at night */
+  --accent-foreground: #0f1c2b;
+  --sun: #ffc72c;
+  --sea: #4fa3bf;
+  --muted: #1c2d40;
+  --muted-foreground: #a9b4c0;
+  --border: #2b3f56;
 }
